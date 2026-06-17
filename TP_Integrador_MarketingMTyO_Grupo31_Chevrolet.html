@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TP Integrador 2026 · Grupo 31 · Chevrolet Spark EUV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --gold:#C9A227; --gold-soft:#E7CE7A; --ink:#0E0E0E; --ink-soft:#2b2b2b;
@@ -12,8 +15,19 @@
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    color:var(--ink);background:var(--bg);line-height:1.6;font-size:16px;}
+  body{margin:0;font-family:"Inter","Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  h1,h2,h3,h4,.kicker,.sec-num,.brand,.card.kpi .big,.cover h1,.funnel .lbl{font-family:"Space Grotesk","Segoe UI",system-ui,sans-serif;}
+  /* iconos de línea (reemplazan a los emojis) */
+  .ico{width:1.15em;height:1.15em;vertical-align:-0.18em;stroke:currentColor;fill:none;stroke-width:1.75;
+    stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto;margin-right:.12em;}
+  .ico-ev{color:var(--ev);} .ico-gold{color:var(--gold);}
+  /* scroll-reveal sutil */
+  .reveal{opacity:0;
+    transition:opacity .5s ease;}
+  .reveal.in{opacity:1;}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;transition:none;}}
+  @media print{.reveal{opacity:1!important;transform:none!important;}}
   .wrap{max-width:1040px;margin:0 auto;padding:0 22px;}
   /* ---------- NAV ---------- */
   nav{position:sticky;top:0;z-index:40;background:rgba(14,14,14,.96);backdrop-filter:blur(6px);
@@ -106,6 +120,27 @@
 </head>
 <body>
 
+<!-- Set de iconos de línea (design system) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-bank" viewBox="0 0 24 24"><path d="M4 9l8-4 8 4"/><path d="M5 10v8M12 10v8M19 10v8"/><path d="M3 19h18M4 10h16"/></symbol>
+  <symbol id="i-car" viewBox="0 0 24 24"><path d="M5 11l1.6-4.2A2 2 0 0 1 8.5 5.5h7a2 2 0 0 1 1.9 1.3L19 11"/><path d="M3 11h18v5H3z"/><circle cx="7.5" cy="16.5" r="1.5"/><circle cx="16.5" cy="16.5" r="1.5"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-4-9 7"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8.5v7M8.5 12h7"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17h.01"/></symbol>
+  <symbol id="i-rocket" viewBox="0 0 24 24"><path d="M9 15l-3-3c3-7 8-8 11-8 0 3-1 8-8 11l-3-3z"/><path d="M9 15c-1 1-1 4-1 4s3 0 4-1"/><circle cx="14.5" cy="9.5" r="1.4"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 15a4 4 0 0 1 0-8 5 5 0 0 1 9.5 1.6A3.5 3.5 0 0 1 17 15H7z"/><path d="M11 15l-1.5 4M15 15l-1.5 4"/></symbol>
+  <symbol id="i-city" viewBox="0 0 24 24"><path d="M3 21V8l5-3v16M8 21V11l6-3v13M14 21V12l6-2v11"/><path d="M2 21h20"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 5.5a3 3 0 0 1 0 6M21 20a6 6 0 0 0-4.5-5.8"/></symbol>
+  <symbol id="i-building" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2"/><path d="M3 21h18"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></symbol>
+  <symbol id="i-mobile" viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></symbol>
+  <symbol id="i-megaphone" viewBox="0 0 24 24"><path d="M4 10v4l9 4V6z"/><path d="M13 8.5a4 4 0 0 1 0 7"/><path d="M4 14H3a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h1"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+  <symbol id="i-loop" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 15-6.7L21 7"/><path d="M21 4v3.5h-3.5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 17"/><path d="M3 20v-3.5h3.5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></symbol>
+</defs></svg>
+
 <nav>
   <div class="wrap">
     <span class="brand">▸ GRUPO 31 · SPARK EUV</span>
@@ -166,7 +201,7 @@
   <h2><span class="sec-num">0</span> Objetivo general & índice</h2>
 
   <div class="card" style="background:#0E0E0E;color:#fff;border:none;">
-    <h4 style="color:var(--gold);">🎯 Objetivo general de la propuesta (máx. 3 líneas)</h4>
+    <h4 style="color:var(--gold);"><svg class="ico"><use href="#i-target"/></svg> Objetivo general de la propuesta (máx. 3 líneas)</h4>
     <p style="margin:0;">Posicionar a Chevrolet Spark EUV como <b>el eléctrico con la red de respaldo y posventa más confiable de Argentina</b>, convirtiendo la mayor barrera del mercado (miedo al servicio y la garantía) en su principal ventaja competitiva, para captar consideración y cerrar ventas frente al dominio de BYD en un horizonte de 3 meses.</p>
   </div>
 
@@ -213,14 +248,14 @@
   <h3>1.3 · Auditoría digital en dos capas (método)</h3>
   <p>Auditamos en <b>dos niveles complementarios</b>, porque al modelo lo sostiene la marca: el armazón de visibilidad, confianza y posventa del Spark EUV es <b>Chevrolet</b>, igual que a la Dolphin Mini la sostiene <b>BYD</b>. Por eso cada dato se releva en la capa que le corresponde.</p>
   <div class="grid g2">
-    <div class="card" style="border-left:4px solid var(--gold);"><h4>🏛️ Capa MARCA <span class="pill gold">macro · el armazón</span></h4><p style="font-size:.88rem;margin:6px 0 0;">Comunidad y autoridad de la marca, tráfico del sitio corporativo y —sobre todo— el <b>ecosistema de posventa</b> (red de talleres, app, agenda de service). Aquí vive la ventaja de Chevrolet y nuestro enfoque del TP.</p></div>
-    <div class="card" style="border-left:4px solid var(--ev);"><h4>🚗 Capa MODELO <span class="pill">micro · la batalla</span></h4><p style="font-size:.88rem;margin:6px 0 0;">El cara a cara que ve el comprador: <b>Spark EUV vs Dolphin Mini</b> — micrositio del modelo, precio, ficha, autonomía, keywords y anuncios del modelo. Aquí se define la conversión.</p></div>
+    <div class="card" style="border-left:4px solid var(--gold);"><h4><svg class="ico"><use href="#i-bank"/></svg> Capa MARCA <span class="pill gold">macro · el armazón</span></h4><p style="font-size:.88rem;margin:6px 0 0;">Comunidad y autoridad de la marca, tráfico del sitio corporativo y —sobre todo— el <b>ecosistema de posventa</b> (red de talleres, app, agenda de service). Aquí vive la ventaja de Chevrolet y nuestro enfoque del TP.</p></div>
+    <div class="card" style="border-left:4px solid var(--ev);"><h4><svg class="ico"><use href="#i-car"/></svg> Capa MODELO <span class="pill">micro · la batalla</span></h4><p style="font-size:.88rem;margin:6px 0 0;">El cara a cara que ve el comprador: <b>Spark EUV vs Dolphin Mini</b> — micrositio del modelo, precio, ficha, autonomía, keywords y anuncios del modelo. Aquí se define la conversión.</p></div>
   </div>
 
   <h4 style="margin-top:18px;">Matriz de relevamiento — qué capturar y en qué capa</h4>
   <div style="overflow-x:auto;">
   <table>
-    <tr><th>🏛️ Capturar a nivel MARCA (Chevrolet, BYD…)</th><th>🚗 Capturar a nivel MODELO (Spark EUV, Dolphin Mini…)</th></tr>
+    <tr><th><svg class="ico"><use href="#i-bank"/></svg> Capturar a nivel MARCA (Chevrolet, BYD…)</th><th><svg class="ico"><use href="#i-car"/></svg> Capturar a nivel MODELO (Spark EUV, Dolphin Mini…)</th></tr>
     <tr><td>Seguidores y engagement (IG / TikTok / YouTube de la marca)</td><td>Micrositio / landing del modelo</td></tr>
     <tr><td>Tráfico del sitio corporativo (chevrolet.com.ar)</td><td>Keywords y anuncios del modelo (“comprar Dolphin Mini”)</td></tr>
     <tr><td>Ecosistema posventa: app, agenda de service, red de talleres</td><td>Precio, ficha técnica, autonomía y garantía del modelo</td></tr>
@@ -228,7 +263,7 @@
     <tr><td>Share of voice de la marca en el segmento EV</td><td>Posición del modelo en patentamientos (167 u, 1.695 u…)</td></tr>
   </table></div>
   <div class="warn"><b>Evidencia visual obligatoria.</b> La rúbrica exige <b>capturas de auditoría y benchmarking</b>. Tomar screenshots siguiendo la matriz de arriba y rotular cada uno indicando su <b>capa</b> (marca o modelo) y la fuente.</div>
-  <div class="note">📸 <b>La evidencia visual del benchmarking</b> (capturas reales de las dos capas — perfiles sociales, posventa, tráfico, sitios y anuncios) está consolidada más abajo en <b>§1.6</b>, organizada por categoría para comparar las 5 marcas de un vistazo.</div>
+  <div class="note"><svg class="ico"><use href="#i-image"/></svg> <b>La evidencia visual del benchmarking</b> (capturas reales de las dos capas — perfiles sociales, posventa, tráfico, sitios y anuncios) está consolidada más abajo en <b>§1.6</b>, organizada por categoría para comparar las 5 marcas de un vistazo.</div>
 
   <h3>1.4 · Capa MARCA — el armazón (dato verificado)</h3>
   <div style="overflow-x:auto;">
@@ -300,26 +335,26 @@
   <span class="kicker">Análisis situacional · diagnóstico</span>
   <h2><span class="sec-num">2</span> FODA Digital — Chevrolet Spark EUV</h2>
   <div class="foda">
-    <div class="fo"><h4>💪 Fortalezas</h4><ul>
+    <div class="fo"><h4><svg class="ico ico-ev"><use href="#i-plus"/></svg> Fortalezas</h4><ul>
       <li>Marca instalada hace +100 años con confianza intergeneracional.</li>
       <li>Red de concesionarios y talleres en todo el país (única del lote).</li>
       <li>Ecosistema digital propio: app myChevrolet, OnStar, GM Owner Center, agenda de servicio online.</li>
       <li>Capacidad de financiación y plan de ahorro propios.</li>
     </ul></div>
-    <div class="fa"><h4>⚠️ Debilidades</h4><ul>
+    <div class="fa"><h4><svg class="ico ico-gold"><use href="#i-alert"/></svg> Debilidades</h4><ul>
       <li>Volumen y notoriedad en el canal EV muy por debajo de BYD.</li>
       <li>Poca producción de contenido digital específico del Spark EUV.</li>
       <li>Precio inicial percibido más alto que rivales chinos.</li>
       <li>Garantía más corta en papel (3 años/100.000 km) vs BYD (6 años + 8 de batería) y JMEV (8 de batería).</li>
       <li>Comunicación de posventa hoy genérica, no diferenciada para eléctricos.</li>
     </ul></div>
-    <div class="fde"><h4>🚀 Oportunidades</h4><ul>
+    <div class="fde"><h4><svg class="ico ico-ev"><use href="#i-rocket"/></svg> Oportunidades</h4><ul>
       <li>Mercado EV creciendo +760%: la torta se agranda para todos.</li>
       <li>La posventa es la <b>mayor angustia</b> del comprador EV → terreno libre para liderar.</li>
       <li>Adopción urbana concentrada → inversión geolocalizada eficiente.</li>
       <li>IA aplicada a personalización y atención 24/7 (chatbots, contenido dinámico).</li>
     </ul></div>
-    <div class="fam"><h4>🌩️ Amenazas</h4><ul>
+    <div class="fam"><h4><svg class="ico"><use href="#i-cloud"/></svg> Amenazas</h4><ul>
       <li>Dominio aplastante de BYD (74% del mercado entre 2 modelos).</li>
       <li>Guerra de precios por la apertura de importaciones chinas.</li>
       <li>Suba de costos de carga (aumento YPF a usuarios EV).</li>
@@ -352,17 +387,17 @@
 
   <h3>4.1 · Segmentación de audiencias (buyer personas)</h3>
   <div class="grid g3">
-    <div class="card"><h4>🏙️ “Pionero urbano”</h4><p style="font-size:.88rem;">28–45, CABA/Córdoba/Rosario, profesional, eco-consciente y tecnológico. <b>Miedo clave:</b> “¿quién me lo arregla y mantiene la garantía?”. Le hablamos con <b>respaldo y posventa</b>.</p></div>
-    <div class="card"><h4>👨‍👩‍👧 “Familia que ahorra”</h4><p style="font-size:.88rem;">35–50, segundo auto para ciudad, sensible al costo total. Le mostramos <b>ahorro en combustible + mantenimiento reducido + financiación Chevrolet</b>.</p></div>
-    <div class="card"><h4>🏢 “Flota / corporativo”</h4><p style="font-size:.88rem;">PYMEs y empresas con responsabilidad ambiental. Le ofrecemos <b>gestión de flota, posventa programada y reporting de uso</b> (B2B).</p></div>
+    <div class="card"><h4><svg class="ico"><use href="#i-city"/></svg> “Pionero urbano”</h4><p style="font-size:.88rem;">28–45, CABA/Córdoba/Rosario, profesional, eco-consciente y tecnológico. <b>Miedo clave:</b> “¿quién me lo arregla y mantiene la garantía?”. Le hablamos con <b>respaldo y posventa</b>.</p></div>
+    <div class="card"><h4><svg class="ico"><use href="#i-users"/></svg> “Familia que ahorra”</h4><p style="font-size:.88rem;">35–50, segundo auto para ciudad, sensible al costo total. Le mostramos <b>ahorro en combustible + mantenimiento reducido + financiación Chevrolet</b>.</p></div>
+    <div class="card"><h4><svg class="ico"><use href="#i-building"/></svg> “Flota / corporativo”</h4><p style="font-size:.88rem;">PYMEs y empresas con responsabilidad ambiental. Le ofrecemos <b>gestión de flota, posventa programada y reporting de uso</b> (B2B).</p></div>
   </div>
 
   <h3>4.2 · Mix de canales</h3>
   <div class="grid g4">
-    <div class="card"><h4>🔎 Search (SEM/SEO)</h4><p style="font-size:.85rem;">Google Ads sobre intención de compra y keywords de posventa EV; SEO de “servicio auto eléctrico”.</p></div>
-    <div class="card"><h4>📱 Social Ads</h4><p style="font-size:.85rem;">Meta + TikTok geolocalizado en las 5 ciudades. Awareness y captación de leads.</p></div>
-    <div class="card"><h4>🤝 Influencers</h4><p style="font-size:.85rem;">Creadores de autos/tech/lifestyle sustentable que prueben el service y la experiencia, no solo el auto.</p></div>
-    <div class="card"><h4>✉️ CRM / Email + App</h4><p style="font-size:.85rem;">Automatización de nurturing, onboarding y posventa vía myChevrolet y email (motor de fidelización).</p></div>
+    <div class="card"><h4><svg class="ico"><use href="#i-search"/></svg> Search (SEM/SEO)</h4><p style="font-size:.85rem;">Google Ads sobre intención de compra y keywords de posventa EV; SEO de “servicio auto eléctrico”.</p></div>
+    <div class="card"><h4><svg class="ico"><use href="#i-mobile"/></svg> Social Ads</h4><p style="font-size:.85rem;">Meta + TikTok geolocalizado en las 5 ciudades. Awareness y captación de leads.</p></div>
+    <div class="card"><h4><svg class="ico"><use href="#i-megaphone"/></svg> Influencers</h4><p style="font-size:.85rem;">Creadores de autos/tech/lifestyle sustentable que prueben el service y la experiencia, no solo el auto.</p></div>
+    <div class="card"><h4><svg class="ico"><use href="#i-mail"/></svg> CRM / Email + App</h4><p style="font-size:.85rem;">Automatización de nurturing, onboarding y posventa vía myChevrolet y email (motor de fidelización).</p></div>
   </div>
 
   <h3>4.3 · Embudo de conversión + Loop de fidelización</h3>
@@ -370,7 +405,7 @@
     <div class="step f1"><div class="lbl">TOFU · Awareness</div><div class="desc">Social Ads + Influencers + contenido “mitos del eléctrico” → reach y comunidad</div></div>
     <div class="step f2"><div class="lbl">MOFU · Consideración</div><div class="desc">Search + Lead magnet (“Guía de posventa EV”) + comparativas → leads y test drives</div></div>
     <div class="step f3"><div class="lbl">BOFU · Conversión</div><div class="desc">Remarketing + Experience Center + financiación → reserva / venta</div></div>
-    <div class="step f4"><div class="lbl">♻️ LOYALTY LOOP · Posventa</div><div class="desc">Capacitación de entrega + agenda de service + reportes de uso → recompra y referidos</div></div>
+    <div class="step f4"><div class="lbl"><svg class="ico ico-ev"><use href="#i-loop"/></svg> LOYALTY LOOP · Posventa</div><div class="desc">Capacitación de entrega + agenda de service + reportes de uso → recompra y referidos</div></div>
   </div>
   <div class="note"><b>Nuestra diferencia frente a la competencia:</b> los rivales chinos terminan su embudo en la venta. Nosotros agregamos un <b>cuarto nivel (Loyalty Loop)</b> que retroalimenta el embudo: un cliente bien atendido en posventa se convierte en prueba social, reseña y referido — bajando el costo de adquisición de los siguientes.</div>
 </section>
@@ -447,7 +482,7 @@
     <tr><td class="stagecell">Medición, optimización y reporte al cliente</td>
       <td colspan="3"></td><td><span class="bar m1"></span></td><td colspan="3"></td><td><span class="bar m1"></span></td><td colspan="3"></td><td><span class="bar m1"></span></td></tr>
   </table></div>
-  <p class="src">Hitos de medición al cierre de cada mes (S4, S8, S12). Leyenda: 🟡 setup/medición · 🟢 awareness/posventa · 🔵 search · 🟣 conversión.</p>
+  <p class="src">Hitos de medición al cierre de cada mes (S4, S8, S12). Leyenda: <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#C9A227;vertical-align:middle;margin-right:3px"></span> setup/medición · <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#19A974;vertical-align:middle;margin-right:3px"></span> awareness/posventa · <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#1f6fbf;vertical-align:middle;margin-right:3px"></span> search · <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#8a5cc4;vertical-align:middle;margin-right:3px"></span> conversión.</p>
 </section>
 
 <!-- ============ 7. PLAN DE CONTENIDOS ============ -->
@@ -457,20 +492,20 @@
   <p class="lead">Propuesta creativa de piezas por canal: Social Media · Influencers · Search.</p>
 
   <div class="grid g3">
-    <div class="card"><h4>📱 Social Media</h4>
+    <div class="card"><h4><svg class="ico"><use href="#i-mobile"/></svg> Social Media</h4>
       <ul class="clean" style="font-size:.85rem;">
         <li>Reels “Mito vs Realidad EV” (objeciones)</li>
         <li>Carrusel “5 cosas que tu eléctrico necesita” (posventa)</li>
         <li>Video onboarding real de un cliente</li>
         <li>Stories de agenda de service / app</li>
       </ul></div>
-    <div class="card"><h4>🤝 Influencers</h4>
+    <div class="card"><h4><svg class="ico"><use href="#i-megaphone"/></svg> Influencers</h4>
       <ul class="clean" style="font-size:.85rem;">
         <li>Creador de autos prueba el Spark + el service</li>
         <li>Microinfluencer eco/lifestyle: vida con EV 30 días</li>
         <li>Tech reviewer: la app y el rating de uso</li>
       </ul></div>
-    <div class="card"><h4>🔎 Search</h4>
+    <div class="card"><h4><svg class="ico"><use href="#i-search"/></svg> Search</h4>
       <ul class="clean" style="font-size:.85rem;">
         <li>Campaña intención: “comprar auto eléctrico”</li>
         <li>Campaña posventa: “service auto eléctrico”</li>
@@ -499,9 +534,9 @@
         <rect x="0" y="0" width="180" height="80" fill="#C9A227"/>
         <text x="14" y="46" font-size="13" fill="#000" font-family="sans-serif" font-weight="bold">EV CARE</text>
         <text x="14" y="62" font-size="8" fill="#3a2e08" font-family="sans-serif">Tu auto, siempre al día</text>
-        <rect x="14" y="100" width="152" height="40" rx="8" fill="#fff" stroke="#e4e4e4"/><text x="24" y="124" font-size="9" fill="#0E0E0E" font-family="sans-serif">📅 Agendá tu service online</text>
-        <rect x="14" y="150" width="152" height="40" rx="8" fill="#fff" stroke="#e4e4e4"/><text x="24" y="174" font-size="9" fill="#0E0E0E" font-family="sans-serif">📊 Reporte de uso mensual</text>
-        <rect x="14" y="200" width="152" height="40" rx="8" fill="#fff" stroke="#e4e4e4"/><text x="24" y="224" font-size="9" fill="#0E0E0E" font-family="sans-serif">⭐ Rating de tu vehículo</text>
+        <rect x="14" y="100" width="152" height="40" rx="8" fill="#fff" stroke="#e4e4e4"/><text x="24" y="124" font-size="9" fill="#0E0E0E" font-family="sans-serif">Agendá tu service online</text>
+        <rect x="14" y="150" width="152" height="40" rx="8" fill="#fff" stroke="#e4e4e4"/><text x="24" y="174" font-size="9" fill="#0E0E0E" font-family="sans-serif">Reporte de uso mensual</text>
+        <rect x="14" y="200" width="152" height="40" rx="8" fill="#fff" stroke="#e4e4e4"/><text x="24" y="224" font-size="9" fill="#0E0E0E" font-family="sans-serif">Rating de tu vehículo</text>
         <text x="40" y="285" font-size="8" fill="#888" font-family="sans-serif">Post · Programa posventa</text>
       </svg>
     </div>
@@ -569,7 +604,7 @@
 <!-- ============ ANEXO INTERNO (NO ENTREGAR) ============ -->
 <section id="interno" class="internal">
   <span class="kicker" style="color:#a07d0c;">Anexo de trabajo · NO forma parte de la entrega</span>
-  <h2 style="color:#7a5e09;">🛠️ Para la reunión del equipo: decisiones, puntos ciegos y tareas</h2>
+  <h2 style="color:#7a5e09;"> Para la reunión del equipo: decisiones, puntos ciegos y tareas</h2>
   <p>Esta sección es para vos y el grupo. Sacala antes de exportar el PDF final.</p>
 
   <h3>A · Decisiones que necesito de ustedes (me destraban para afinar el TP)</h3>
@@ -592,16 +627,16 @@
   <h3>C · Checklist de la rúbrica (10 criterios) — estado</h3>
   <table style="font-size:.85rem;">
     <tr><th>Criterio</th><th>Estado en este borrador</th></tr>
-    <tr><td>1 · Carátula completa</td><td>✅ (falta nombre del docente)</td></tr>
-    <tr><td>2 · Análisis situacional completo</td><td>✅ texto · ⚠️ faltan capturas reales</td></tr>
-    <tr><td>3 · Coherencia objetivos–diagnóstico</td><td>✅</td></tr>
-    <tr><td>4 · Estrategia táctica</td><td>✅</td></tr>
-    <tr><td>5 · Plan operativo (Gantt)</td><td>✅</td></tr>
-    <tr><td>6 · Plan de contenidos visual</td><td>⚠️ mockups guía → reemplazar por piezas Canva</td></tr>
-    <tr><td>7 · Presupuesto distribuido</td><td>✅ (validar cifra)</td></tr>
-    <tr><td>8 · KPI alineados</td><td>✅</td></tr>
-    <tr><td>9 · Consistencia integral</td><td>✅</td></tr>
-    <tr><td>10 · Profesionalismo y creatividad</td><td>✅ idea “EV Care” diferencial</td></tr>
+    <tr><td>1 · Carátula completa</td><td><svg class="ico ico-ev"><use href="#i-check"/></svg> (falta nombre del docente)</td></tr>
+    <tr><td>2 · Análisis situacional completo</td><td><svg class="ico ico-ev"><use href="#i-check"/></svg> texto · <svg class="ico ico-gold"><use href="#i-alert"/></svg> faltan capturas reales</td></tr>
+    <tr><td>3 · Coherencia objetivos–diagnóstico</td><td><svg class="ico ico-ev"><use href="#i-check"/></svg></td></tr>
+    <tr><td>4 · Estrategia táctica</td><td><svg class="ico ico-ev"><use href="#i-check"/></svg></td></tr>
+    <tr><td>5 · Plan operativo (Gantt)</td><td><svg class="ico ico-ev"><use href="#i-check"/></svg></td></tr>
+    <tr><td>6 · Plan de contenidos visual</td><td><svg class="ico ico-gold"><use href="#i-alert"/></svg> mockups guía → reemplazar por piezas Canva</td></tr>
+    <tr><td>7 · Presupuesto distribuido</td><td><svg class="ico ico-ev"><use href="#i-check"/></svg> (validar cifra)</td></tr>
+    <tr><td>8 · KPI alineados</td><td><svg class="ico ico-ev"><use href="#i-check"/></svg></td></tr>
+    <tr><td>9 · Consistencia integral</td><td><svg class="ico ico-ev"><use href="#i-check"/></svg></td></tr>
+    <tr><td>10 · Profesionalismo y creatividad</td><td><svg class="ico ico-ev"><use href="#i-check"/></svg> idea “EV Care” diferencial</td></tr>
   </table>
 </section>
 
@@ -612,5 +647,20 @@
 </div>
 
 </div>
+
+<script>
+(function(){
+  if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var els = document.querySelectorAll('section, .card, .st, .funnel .step');
+  els.forEach(function(el){ el.classList.add('reveal'); });
+  if(!('IntersectionObserver' in window)){ els.forEach(function(el){ el.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.05 });
+  els.forEach(function(el){ io.observe(el); });
+  setTimeout(function(){ els.forEach(function(el){ el.classList.add('in'); }); }, 1600);
+  window.addEventListener('hashchange', function(){ var t=document.querySelector(location.hash); if(t) t.classList.add('in'); });
+})();
+</script>
 </body>
 </html>
