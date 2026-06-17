@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_in_Chrome__list_connected_browsers",
+      "mcp__Claude_in_Chrome__select_browser",
+      "mcp__Claude_in_Chrome__navigate",
+      "mcp__Claude_in_Chrome__computer",
+      "PowerShell(Get-Process | Where-Object { $_.MainWindowTitle -ne '' } | Select-Object Id, ProcessName, MainWindowTitle | Format-Table -AutoSize -Wrap)",
+      "mcp__Claude_in_Chrome__tabs_create_mcp",
+      "mcp__Claude_in_Chrome__tabs_close_mcp",
+      "mcp__Claude_in_Chrome__javascript_tool",
+      "PowerShell(& \"C:\\\\Users\\\\Ariel\\\\AppData\\\\Local\\\\Temp\\\\capture_tab.ps1\" -Out \"C:\\\\Users\\\\Ariel\\\\Documents\\\\UTN\\\\4Q 2026\\\\Marketing digital t�ctico y operativo_2026\\\\Trabajo Pr�ctico Integrador 2026 Consultor�a de Marketing Digital\\\\Evidencias\\\\Chevrolet_Spark_EUV\\\\02_Modelo\\\\web_modelo.png\")",
+      "mcp__Claude_in_Chrome__get_page_text"
+    ]
+  }
+}

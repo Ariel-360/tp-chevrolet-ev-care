@@ -1,0 +1,60 @@
+/* ============================================================
+   TP Chevrolet EV Care — Design Tokens
+   Fuente única de verdad de color, tipografía, espaciado y motion.
+   Pegar/empatar estos tokens en Claude design / Figma / el HTML.
+   ============================================================ */
+:root{
+  /* ---------- Paleta de marca ---------- */
+  --gold:#C9A227;        /* primario — dorado Chevrolet (acentos, números, totales) */
+  --gold-soft:#E7CE7A;   /* dorado claro (bordes, degradés) */
+  --gold-bg:#F6ECC8;     /* fondo dorado muy claro (pills, highlights) */
+  --ink:#0E0E0E;         /* negro principal (texto, headers, portada) */
+  --ink-soft:#2B2B2B;    /* gris muy oscuro (texto secundario) */
+  --mute:#6B6B6B;        /* texto apagado / captions */
+  --ev:#19A974;          /* verde eléctrico (EV / posventa / éxito) */
+  --ev-soft:#D8F3E7;     /* verde pálido (notas, fondos suaves) */
+  --blue:#1F6FBF;        /* azul secundario (Search, datos) */
+  --violet:#8A5CC4;      /* violeta (etapa conversión en Gantt) */
+  --paper:#FFFFFF;       /* superficie de tarjeta */
+  --bg:#F6F6F4;          /* fondo de página */
+  --line:#E4E4E4;        /* líneas / bordes */
+
+  /* ---------- Tipografía ----------
+     Recomendado: display geométrico para títulos + sans neutra para texto.
+     Cargar desde Google Fonts (ver DESIGN.md). Fallback al sistema para el PDF offline. */
+  --font-display:"Space Grotesk","Segoe UI",system-ui,-apple-system,sans-serif;
+  --font-text:"Inter","Segoe UI",system-ui,-apple-system,sans-serif;
+  --fs-300:0.78rem;  /* captions, fuentes */
+  --fs-400:0.92rem;  /* texto chico / tablas */
+  --fs-500:1rem;     /* base */
+  --fs-600:1.12rem;  /* subtítulos h3 */
+  --fs-700:1.55rem;  /* h2 */
+  --fs-800:2rem;     /* h1 secundario */
+  --fs-900:2.7rem;   /* portada */
+  --lh-tight:1.2;
+  --lh-base:1.6;
+  --tracking-kicker:1.5px; /* mayúsculas/kickers */
+
+  /* ---------- Espaciado (escala base 4px) ---------- */
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px;
+  --sp-6:24px; --sp-8:32px; --sp-10:40px; --sp-12:48px; --sp-16:64px;
+
+  /* ---------- Radios ---------- */
+  --r-sm:8px; --r-md:11px; --r-lg:14px; --r-pill:30px;
+
+  /* ---------- Sombras (sutiles, nada "cheap") ---------- */
+  --shadow-1:0 1px 3px rgba(14,14,14,.05);
+  --shadow-2:0 10px 30px rgba(14,14,14,.08);
+
+  /* ---------- Layout ---------- */
+  --maxw:1040px;
+
+  /* ---------- Motion (mínima, elegante) ---------- */
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --dur-fast:160ms; --dur:280ms; --dur-slow:520ms;
+}
+
+/* Accesibilidad: respetar quien pide menos movimiento */
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important; transition:none!important; scroll-behavior:auto!important;}
+}

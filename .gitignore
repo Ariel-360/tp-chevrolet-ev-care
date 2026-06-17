@@ -1,0 +1,19 @@
+# --- NO publicar en el repo / GitHub Pages ---
+
+# Respaldo de capturas full-screen: incluyen la barra del navegador con pestañas
+# y marcadores personales. NO deben hacerse públicas.
+Evidencias_originales_fullscreen/
+
+# Capturas viejas y parciales (reemplazadas por Evidencias/)
+01 - capturas evidencia redes/
+
+# Archivos temporales del sistema
+Thumbs.db
+.DS_Store
+desktop.ini
+*.tmp
+
+# Notas internas (opcional): descomentar si NO querés publicarlas en el repo público.
+# Recordá quitar también la sección #interno del HTML antes del PDF final.
+# BRIEF_TP_Grupo31.md
+# CLAUDE.md

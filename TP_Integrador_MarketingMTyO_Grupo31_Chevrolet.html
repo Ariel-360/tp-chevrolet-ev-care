@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TP Integrador 2026 · Grupo 31 · Chevrolet Spark EUV</title>
+<style>
+  :root{
+    --gold:#C9A227; --gold-soft:#E7CE7A; --ink:#0E0E0E; --ink-soft:#2b2b2b;
+    --ev:#19A974; --ev-soft:#D8F3E7; --paper:#ffffff; --mute:#6b6b6b;
+    --line:#e4e4e4; --bg:#f6f6f4; --blue:#1f6fbf;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.6;font-size:16px;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px;}
+  /* ---------- NAV ---------- */
+  nav{position:sticky;top:0;z-index:40;background:rgba(14,14,14,.96);backdrop-filter:blur(6px);
+    border-bottom:2px solid var(--gold);}
+  nav .wrap{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px;}
+  nav .brand{color:var(--gold);font-weight:800;letter-spacing:.5px;font-size:.9rem;margin-right:auto;}
+  nav a{color:#ddd;text-decoration:none;font-size:.74rem;padding:4px 8px;border-radius:6px;white-space:nowrap;}
+  nav a:hover{background:var(--gold);color:#000;}
+  /* ---------- SECTION ---------- */
+  section{background:var(--paper);margin:22px 0;border-radius:14px;padding:38px;border:1px solid var(--line);
+    box-shadow:0 1px 3px rgba(0,0,0,.04);}
+  section.cover{background:linear-gradient(135deg,#0E0E0E 0%,#1c1c1c 60%,#262011 100%);color:#fff;border:none;}
+  h1,h2,h3{line-height:1.2;}
+  h2{font-size:1.55rem;margin:0 0 4px;display:flex;align-items:center;gap:12px;}
+  .kicker{color:var(--gold);font-weight:800;text-transform:uppercase;letter-spacing:1.5px;font-size:.72rem;}
+  .lead{color:var(--ink-soft);font-size:1.05rem;}
+  h3{font-size:1.12rem;margin:26px 0 6px;color:var(--ink);}
+  p{margin:10px 0;}
+  .sec-num{background:var(--gold);color:#000;font-weight:800;width:38px;height:38px;border-radius:9px;
+    display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem;flex:0 0 auto;}
+  /* ---------- COVER ---------- */
+  .cover .uni{font-size:.8rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold-soft);}
+  .cover h1{font-size:2.7rem;margin:18px 0 6px;}
+  .cover .sub{font-size:1.15rem;color:#eee;}
+  .cover .bowtie{margin:26px 0 14px;}
+  .cover .meta{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:26px;}
+  .cover .meta div{background:rgba(255,255,255,.06);border:1px solid rgba(201,162,39,.4);border-radius:10px;padding:12px 16px;}
+  .cover .meta b{color:var(--gold);display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;}
+  .team{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;}
+  .team span{background:rgba(201,162,39,.15);border:1px solid rgba(201,162,39,.5);color:#fff;
+    padding:4px 12px;border-radius:30px;font-size:.85rem;}
+  .you{background:var(--gold)!important;color:#000!important;font-weight:700;}
+  /* ---------- COMPONENTS ---------- */
+  .pill{display:inline-block;background:var(--ev-soft);color:#0a5e3f;font-weight:700;font-size:.72rem;
+    padding:3px 10px;border-radius:30px;letter-spacing:.4px;}
+  .pill.gold{background:#f6ecc8;color:#7a5e09;}
+  .pill.dark{background:#222;color:var(--gold);}
+  .grid{display:grid;gap:16px;}
+  .g2{grid-template-columns:1fr 1fr;} .g3{grid-template-columns:repeat(3,1fr);} .g4{grid-template-columns:repeat(4,1fr);}
+  .card{background:#fafafa;border:1px solid var(--line);border-radius:11px;padding:16px 18px;}
+  .card h4{margin:0 0 6px;font-size:1rem;display:flex;align-items:center;gap:8px;}
+  .card.kpi{text-align:center;}
+  .card.kpi .big{font-size:1.9rem;font-weight:800;color:var(--gold);line-height:1;}
+  .card.kpi .lab{font-size:.78rem;color:var(--mute);margin-top:4px;}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.9rem;}
+  th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top;}
+  th{background:var(--ink);color:#fff;font-size:.78rem;text-transform:uppercase;letter-spacing:.5px;}
+  tr:nth-child(even) td{background:#fafafa;}
+  td.num,th.num{text-align:right;}
+  .tot td{background:var(--gold)!important;color:#000;font-weight:800;}
+  .note{background:var(--ev-soft);border-left:4px solid var(--ev);padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0;font-size:.92rem;}
+  .warn{background:#fff5e0;border-left:4px solid var(--gold);padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0;font-size:.92rem;}
+  .src{font-size:.78rem;color:var(--mute);margin-top:6px;}
+  .placeholder{border:2px dashed #c9a227;background:#fffdf3;border-radius:10px;padding:22px;text-align:center;
+    color:#8a6d12;font-size:.85rem;margin:12px 0;}
+  ul.clean{list-style:none;padding-left:0;} ul.clean li{padding-left:26px;position:relative;margin:7px 0;}
+  ul.clean li::before{content:"";position:absolute;left:0;top:9px;width:12px;height:12px;border-radius:50%;
+    background:var(--ev);box-shadow:0 0 0 3px var(--ev-soft);}
+  ul.gold li::before{background:var(--gold);box-shadow:0 0 0 3px #f6ecc8;}
+  .foda{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:12px;overflow:hidden;border:1px solid var(--line);}
+  .foda > div{padding:18px;}
+  .foda h4{margin:0 0 8px;font-size:.95rem;text-transform:uppercase;letter-spacing:.5px;}
+  .fo{background:#eaf7f0;} .fa{background:#fdeee6;} .fde{background:#eef3fb;} .fam{background:#fbeeee;}
+  .foda ul{margin:0;padding-left:18px;font-size:.86rem;} .foda li{margin:5px 0;}
+  /* funnel */
+  .funnel{display:flex;flex-direction:column;align-items:center;gap:6px;margin:18px 0;}
+  .funnel .step{color:#fff;border-radius:8px;padding:13px 18px;text-align:center;width:100%;}
+  .funnel .lbl{font-weight:800;letter-spacing:.5px;} .funnel .desc{font-size:.8rem;opacity:.95;}
+  .f1{background:#2b2b2b;max-width:100%;} .f2{background:#5a4a12;max-width:82%;}
+  .f3{background:var(--gold);color:#000;max-width:64%;} .f4{background:var(--ev);max-width:46%;}
+  /* gantt */
+  .gantt{overflow-x:auto;} .gantt table{font-size:.78rem;min-width:720px;}
+  .gantt td{padding:5px 6px;text-align:center;}
+  .bar{height:16px;border-radius:5px;display:block;}
+  .m1{background:var(--gold);} .m2{background:var(--ev);} .m3{background:var(--blue);} .m4{background:#8a5cc4;}
+  .stagecell{text-align:left!important;font-weight:600;background:#fafafa;}
+  /* timeline angle */
+  .steps{counter-reset:s;display:grid;gap:14px;}
+  .steps .st{display:flex;gap:16px;align-items:flex-start;background:#fafafa;border:1px solid var(--line);border-radius:11px;padding:16px;}
+  .steps .st::before{counter-increment:s;content:counter(s);background:var(--ink);color:var(--gold);font-weight:800;
+    width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex:0 0 auto;}
+  .footer{text-align:center;color:var(--mute);font-size:.82rem;padding:30px 0 50px;}
+  .ico{width:22px;height:22px;flex:0 0 auto;}
+  .internal{background:#fff8e6;border:2px solid var(--gold);}
+  .q{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:10px 0;}
+  .q b{color:var(--ink);}
+  @media(max-width:760px){.g2,.g3,.g4,.cover .meta,.foda{grid-template-columns:1fr;}.cover h1{font-size:2rem;}section{padding:24px;}}
+  @media print{nav{display:none;}body{background:#fff;}section{box-shadow:none;border:none;page-break-inside:avoid;margin:0;border-radius:0;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="brand">▸ GRUPO 31 · SPARK EUV</span>
+    <a href="#caratula">Carátula</a>
+    <a href="#resumen">Resumen</a>
+    <a href="#analisis">Análisis</a>
+    <a href="#foda">FODA</a>
+    <a href="#objetivos">Objetivos</a>
+    <a href="#estrategia">Estrategia</a>
+    <a href="#angulo">La Idea</a>
+    <a href="#operativo">Plan Op.</a>
+    <a href="#contenidos">Contenidos</a>
+    <a href="#presupuesto">Presupuesto</a>
+    <a href="#kpi">KPI</a>
+    <a href="#interno">▸ Anexo equipo</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<!-- ============ CARÁTULA ============ -->
+<section class="cover" id="caratula">
+  <div class="uni">Universidad Tecnológica Nacional</div>
+  <div style="font-size:.9rem;color:#ccc;margin-top:4px;">Tecnicatura Universitaria en Comercio Electrónico y Marketing Digital · Año lectivo 2026</div>
+  <div style="font-size:.9rem;color:#ccc;">Materia: Marketing Digital Táctico y Operativo</div>
+
+  <div class="bowtie">
+    <!-- Chevrolet-style bowtie + EV bolt, inline SVG -->
+    <svg width="150" height="60" viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg" aria-label="logo">
+      <polygon points="20,45 90,45 100,30 200,30 210,45 280,45 280,75 210,75 200,90 100,90 90,75 20,75"
+        fill="#C9A227" stroke="#fff" stroke-width="3"/>
+      <path d="M150 38 L138 64 L150 64 L146 84 L168 56 L154 56 Z" fill="#19A974" stroke="#0E0E0E" stroke-width="2"/>
+    </svg>
+  </div>
+
+  <h1>Trabajo Práctico Integrador<br>“Consultoría de Marketing Digital”</h1>
+  <div class="sub">Propuesta de asesoramiento táctico-operativo a 3 meses · <b style="color:var(--gold)">Chevrolet Spark EUV</b><br>
+  Enfoque: <i>Fidelización y servicio de posventa</i></div>
+
+  <div class="meta">
+    <div><b>Grupo</b>31</div>
+    <div><b>Marca / Modelo asignado</b>Chevrolet — Spark EUV (100% eléctrico)</div>
+    <div><b>Docente</b>Mario Olivetto</div>
+    <div><b>Fecha de entrega</b>18 / 06 / 2026 — 23:59 hs</div>
+  </div>
+
+  <div style="margin-top:22px;">
+    <b style="color:var(--gold);font-size:.72rem;text-transform:uppercase;letter-spacing:1px;">Autor</b>
+    <div class="team">
+      <span class="you">Ariel Lescano</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ IDENTIFICACIÓN INTERNA + ÍNDICE ============ -->
+<section id="resumen">
+  <span class="kicker">Identificación interna del documento</span>
+  <h2><span class="sec-num">0</span> Objetivo general & índice</h2>
+
+  <div class="card" style="background:#0E0E0E;color:#fff;border:none;">
+    <h4 style="color:var(--gold);">🎯 Objetivo general de la propuesta (máx. 3 líneas)</h4>
+    <p style="margin:0;">Posicionar a Chevrolet Spark EUV como <b>el eléctrico con la red de respaldo y posventa más confiable de Argentina</b>, convirtiendo la mayor barrera del mercado (miedo al servicio y la garantía) en su principal ventaja competitiva, para captar consideración y cerrar ventas frente al dominio de BYD en un horizonte de 3 meses.</p>
+  </div>
+
+  <h3>Índice de secciones</h3>
+  <div class="grid g2">
+    <ul class="clean gold">
+      <li><b>1.</b> Análisis Situacional — auditoría, mercado, tendencias, benchmarking</li>
+      <li><b>2.</b> FODA Digital</li>
+      <li><b>3.</b> Objetivos SMART</li>
+      <li><b>4.</b> Estrategia Táctica — audiencias, canales, embudo</li>
+    </ul>
+    <ul class="clean gold">
+      <li><b>5.</b> La Gran Idea — Experience Centers + Posventa Inteligente</li>
+      <li><b>6.</b> Plan Operativo — calendario / Gantt</li>
+      <li><b>7.</b> Plan de Contenidos — Social, Influencers, Search</li>
+      <li><b>8.</b> Presupuesto y KPI</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <b>El ángulo de esta propuesta (el “por qué” de todo lo que sigue):</b> el estudio del mercado argentino muestra que el principal freno para comprar un eléctrico <i>no</i> es el precio ni la autonomía, sino la <b>desconfianza en la posventa</b> (“no hay una red de talleres desarrollada y es condición para mantener la garantía”). Chevrolet es la única marca del lote con red histórica de concesionarios y servicio. Toda nuestra táctica explota esa ventaja: <b>no vendemos un auto, vendemos tranquilidad de largo plazo.</b>
+  </div>
+</section>
+
+<!-- ============ 1. ANÁLISIS SITUACIONAL ============ -->
+<section id="analisis">
+  <span class="kicker">Paso 1 de la consigna</span>
+  <h2><span class="sec-num">1</span> Análisis Situacional</h2>
+  <p class="lead">Auditoría digital de la marca asignada y su competencia directa · mercado y tendencias de uso · benchmarking.</p>
+
+  <h3>1.1 · El mercado eléctrico argentino 2026 (tendencias de uso)</h3>
+  <div class="grid g4">
+    <div class="card kpi"><div class="big">+760%</div><div class="lab">patentamientos EV ene–may 2026 vs 2025</div></div>
+    <div class="card kpi"><div class="big">3.011</div><div class="lab">eléctricos puros patentados ene–may</div></div>
+    <div class="card kpi"><div class="big">56,3%</div><div class="lab">del mercado EV lo concentra BYD Dolphin Mini</div></div>
+    <div class="card kpi"><div class="big">+300</div><div class="lab">estaciones de carga (CABA, Córdoba, Mza, Rosario)</div></div>
+  </div>
+  <p>El segmento eléctrico es el <b>único en crecimiento sostenido</b> mientras el mercado automotor general cayó ~13,6%. El gobierno eliminó aranceles para autos extrazona con FOB &lt; USD 16.000, abriendo la puerta a marcas chinas. <b>BYD desplazó a Toyota</b> del liderazgo. ACARA proyecta que los EV superen el 10% del mercado total en 2027. La adopción es <b>urbana y concentrada</b> en las grandes ciudades — justo donde la infraestructura de carga y los compradores conviven.</p>
+  <p class="src">Fuentes: Ámbito, El Economista, 16 Válvulas, Reporte Asia, Cipolletti Digital (datos ene–may 2026).</p>
+
+  <h3>1.2 · Posición de Chevrolet Spark EUV</h3>
+  <p>El modelo real de Chevrolet en Argentina 2026 es el <b>Spark EUV</b> (102 CV, 42 kWh, 360 km, ARS 35,7 M). Completa el podio de eléctricos puros con <b>167 unidades</b> (3° lugar), detrás del BYD Dolphin Mini (1.695) y el BYD Yuan Pro (585). Es la <b>única opción de marca tradicional con respaldo histórico</b> del lote: red de concesionarios instalada, app <b>myChevrolet</b>, plataforma <b>“Agenda tu Servicio” / Servicio Personalizado</b>, GM Owner Center, asistencia 24/7 y OnStar. Su debilidad: volumen y notoriedad digital muy por debajo de los chinos en el canal eléctrico.</p>
+
+  <h3>1.3 · Auditoría digital en dos capas (método)</h3>
+  <p>Auditamos en <b>dos niveles complementarios</b>, porque al modelo lo sostiene la marca: el armazón de visibilidad, confianza y posventa del Spark EUV es <b>Chevrolet</b>, igual que a la Dolphin Mini la sostiene <b>BYD</b>. Por eso cada dato se releva en la capa que le corresponde.</p>
+  <div class="grid g2">
+    <div class="card" style="border-left:4px solid var(--gold);"><h4>🏛️ Capa MARCA <span class="pill gold">macro · el armazón</span></h4><p style="font-size:.88rem;margin:6px 0 0;">Comunidad y autoridad de la marca, tráfico del sitio corporativo y —sobre todo— el <b>ecosistema de posventa</b> (red de talleres, app, agenda de service). Aquí vive la ventaja de Chevrolet y nuestro enfoque del TP.</p></div>
+    <div class="card" style="border-left:4px solid var(--ev);"><h4>🚗 Capa MODELO <span class="pill">micro · la batalla</span></h4><p style="font-size:.88rem;margin:6px 0 0;">El cara a cara que ve el comprador: <b>Spark EUV vs Dolphin Mini</b> — micrositio del modelo, precio, ficha, autonomía, keywords y anuncios del modelo. Aquí se define la conversión.</p></div>
+  </div>
+
+  <h4 style="margin-top:18px;">Matriz de relevamiento — qué capturar y en qué capa</h4>
+  <div style="overflow-x:auto;">
+  <table>
+    <tr><th>🏛️ Capturar a nivel MARCA (Chevrolet, BYD…)</th><th>🚗 Capturar a nivel MODELO (Spark EUV, Dolphin Mini…)</th></tr>
+    <tr><td>Seguidores y engagement (IG / TikTok / YouTube de la marca)</td><td>Micrositio / landing del modelo</td></tr>
+    <tr><td>Tráfico del sitio corporativo (chevrolet.com.ar)</td><td>Keywords y anuncios del modelo (“comprar Dolphin Mini”)</td></tr>
+    <tr><td>Ecosistema posventa: app, agenda de service, red de talleres</td><td>Precio, ficha técnica, autonomía y garantía del modelo</td></tr>
+    <tr><td>Reseñas / rating de concesionarios, autoridad de marca</td><td>Reviews y videos específicos del modelo</td></tr>
+    <tr><td>Share of voice de la marca en el segmento EV</td><td>Posición del modelo en patentamientos (167 u, 1.695 u…)</td></tr>
+  </table></div>
+  <div class="warn"><b>Evidencia visual obligatoria.</b> La rúbrica exige <b>capturas de auditoría y benchmarking</b>. Tomar screenshots siguiendo la matriz de arriba y rotular cada uno indicando su <b>capa</b> (marca o modelo) y la fuente.</div>
+  <div class="note">📸 <b>La evidencia visual del benchmarking</b> (capturas reales de las dos capas — perfiles sociales, posventa, tráfico, sitios y anuncios) está consolidada más abajo en <b>§1.6</b>, organizada por categoría para comparar las 5 marcas de un vistazo.</div>
+
+  <h3>1.4 · Capa MARCA — el armazón (dato verificado)</h3>
+  <div style="overflow-x:auto;">
+  <table>
+    <tr><th>Cuenta oficial (Instagram)</th><th class="num">Seguidores</th><th>Lectura estratégica</th></tr>
+    <tr><td><b>Chevrolet Argentina</b> (@chevroletarg)</td><td class="num">224.000</td><td>Comunidad instalada masiva: activo heredado para empujar el EV sin partir de cero.</td></tr>
+    <tr><td>BYD Auto Argentina (@bydautoarg)</td><td class="num">~19.000</td><td>Líder en ventas EV pero comunidad digital aún incipiente.</td></tr>
+    <tr class="tot"><td>Ventaja Chevrolet</td><td class="num">≈ 12×</td><td>Gana en ventas quien tiene audiencia; nosotros ya la tenemos.</td></tr>
+  </table></div>
+  <div class="note"><b>Insight clave del benchmarking:</b> BYD domina en patentamientos, pero Chevrolet tiene <b>~12 veces más comunidad en Instagram</b>. La batalla no es construir audiencia desde cero, sino <b>convertir nuestra comunidad existente</b> hacia el segmento eléctrico con el argumento de respaldo y posventa.</div>
+  <p class="src">Seguidores verificados vía Instagram (jun 2026). A esta capa pertenece también el <b>ecosistema de posventa de la marca</b> (app myChevrolet, agenda de service, red de talleres) — el verdadero diferencial. Completar con las capturas y agregar TikTok/YouTube.</p>
+
+  <h3>1.5 · Capa MODELO — la batalla cara a cara</h3>
+  <p>El comprador no elige “Chevrolet vs BYD” en abstracto: compara <b>Spark EUV vs Dolphin Mini</b>. Aquí se define la conversión. <span class="pill">El modelo real de Chevrolet en Argentina 2026 es el <b>Spark EUV</b></span></p>
+
+  <h4>Ficha comparativa de modelos (producto)</h4>
+  <div style="overflow-x:auto;">
+  <table>
+    <tr><th>Modelo</th><th>Tipo</th><th class="num">Precio aprox.</th><th class="num">Autonomía</th><th>Batería</th><th>Garantía (vehículo / batería)</th></tr>
+    <tr style="background:#fff8e6;"><td><b>Chevrolet Spark EUV</b> <span class="pill dark">NUESTRO</span></td><td>100% EV · SUV urbano</td><td class="num">$35,7 M ARS</td><td class="num">360 km</td><td>42 kWh · 102 CV</td><td>3 años / 100.000 km · batería 8 años / 160.000 km</td></tr>
+    <tr><td>BYD Dolphin Mini</td><td>100% EV · city</td><td class="num">USD 22.990</td><td class="num">280–380 km</td><td>30 / 43,2 kWh LFP Blade</td><td><b>6 años / 150.000 km · batería 8 años / 150.000 km</b></td></tr>
+    <tr><td>JMEV Easy 3</td><td>100% EV · el más barato</td><td class="num">USD 18.900</td><td class="num">330 km (CLTC)</td><td>30,2 kWh · 68 CV</td><td>3 años / 100.000 km · batería 8 años / 120.000 km</td></tr>
+    <tr><td>BAIC EU5</td><td>100% EV · sedán</td><td class="num">USD 22.700</td><td class="num">401 km</td><td>120 kW · 240 Nm</td><td>7 años / 100.000 km · batería: no informa</td></tr>
+    <tr><td>Jetour T1 i-DM</td><td>PHEV · SUV (no es 100% EV)</td><td class="num">USD 35.800</td><td class="num">Híbrido + nafta</td><td>26,7 kWh + 1.5T</td><td>5 años / 150.000 km · batería 8 años / 160.000 km</td></tr>
+  </table></div>
+  <div class="warn"><b>Lectura honesta (clave para no sobrevender):</b> en <b>plazo de garantía y precio</b>, los chinos ganan en papel (BYD/JMEV ofrecen 6–8 años de batería; el Spark sale más caro). Nuestro diferencial <b>no es la letra chica de la garantía, sino la red real que la hace cumplir</b>: de nada sirve una garantía de 8 años si no hay taller cerca que la respalde. Por eso el ángulo es <b>accesibilidad y confianza del servicio ("EV Care"), no plazos</b>.</div>
+  <p class="src">Garantías verificadas en fichas técnicas y sitios oficiales de cada marca (jun 2026): chevrolet.com.ar, byd.com/ar, jetour.com.ar, jmevargentina.com.ar, baic.com.ar. Nota: BYD remite al distribuidor para el detalle fino de cobertura; BAIC no informa garantía de batería de forma pública.</p>
+
+  <h4>Lectura estratégica del cara a cara</h4>
+  <div style="overflow-x:auto;">
+  <table>
+    <tr><th>Marca / Modelo</th><th>Enfoque de mercado</th><th class="num">Unidades ’26*</th><th>Fortaleza digital</th><th>Punto débil que explotamos</th></tr>
+    <tr><td><b>Chevrolet Spark EUV</b> <span class="pill dark">NUESTRA MARCA</span></td><td>Fidelización y posventa</td><td class="num">167</td><td>Red física, app myChevrolet, OnStar, servicio nacional</td><td>Bajo volumen y poca voz digital en EV</td></tr>
+    <tr><td>BYD Dolphin Mini</td><td>Volumen / penetración</td><td class="num">1.695</td><td>Líder absoluto, fuerte inversión en medios</td><td>Posventa joven, red en construcción, garantía dudosa</td></tr>
+    <tr><td>BYD Yuan Pro</td><td>Volumen / SUV</td><td class="num">585</td><td>Awareness alto por paraguas BYD</td><td>Mismo gap de servicio que Dolphin</td></tr>
+    <tr><td>JMEV Easy 3</td><td>Joven / flotas urbanas</td><td class="num">n/d*</td><td>Precio más accesible</td><td>Marca desconocida, sin respaldo percibido</td></tr>
+    <tr><td>Jetour T1 i-DM (PHEV)</td><td>Tecnología Travel+ / beneficio impositivo</td><td class="num">n/d*</td><td>Argumento fiscal (no paga patente)</td><td>Es híbrido, no 100% eléctrico</td></tr>
+    <tr><td>BAIC EU5</td><td>Profesional / flotas premium</td><td class="num">n/d*</td><td>Producto consolidado (sedán)</td><td>Nicho corporativo, poco B2C</td></tr>
+  </table></div>
+  <p class="src">*Unidades patentadas acumuladas ene–may 2026 (eléctricos puros), datos preliminares. <b>Fuente oficial correcta: ACARA</b> (patentamientos por modelo). <b>n/d</b> = ACARA no publica el dato del modelo en el período: sus series quedaron interrumpidas en 2026 por la falta de datos de la DNRPA. <b>No se usa ADEFA</b> para esta columna porque mide producción, exportaciones y ventas mayoristas a concesionarios — no patentamientos por modelo (mezclarlos sería metodológicamente inconsistente).</p>
+  <div class="note"><b>Contexto sectorial (ADEFA, mayo 2026):</b> la industria produjo 37.762 vehículos (167.629 acum. ene–may), exportó 25.237 (104.520 acum.) y entregó 35.979 a concesionarios (184.033 acum.). Sirve como marco macro del mercado, no como patentamientos por modelo.</div>
+  <div class="note"><b>El cruce de las dos capas (nuestra oportunidad):</b> Chevrolet es <b>marca fuerte con modelo casi invisible</b> en el canal EV (224K de comunidad, pero poca voz del Spark EUV), mientras BYD es <b>modelo fuerte con marca-comunidad incipiente</b>. Nuestra jugada conecta las dos: usamos el armazón de marca (confianza + posventa) para darle visibilidad y conversión al modelo. Además, <b>todos los rivales comparten la misma debilidad —la posventa— y Chevrolet es el único que la ataca con credibilidad.</b></div>
+
+  <h3>1.6 · Evidencia visual del benchmarking (auditoría digital)</h3>
+  <p class="lead">Capturas reales de cada marca consolidadas por categoría para comparar de un vistazo. <b>Chevrolet</b> resaltado en dorado. Relevamiento jun 2026.</p>
+
+  <h4>Comunidad en redes sociales <span class="pill">Capa MARCA</span></h4>
+  <img src="Evidencias/_comparativas/comparativa_instagram.png" alt="Benchmarking Instagram de las 5 marcas" style="width:100%;border:1px solid var(--line);border-radius:10px;margin:8px 0;display:block;break-inside:avoid;">
+  <img src="Evidencias/_comparativas/comparativa_tiktok.png" alt="Benchmarking TikTok de las 5 marcas" style="width:100%;border:1px solid var(--line);border-radius:10px;margin:8px 0;display:block;break-inside:avoid;">
+  <img src="Evidencias/_comparativas/comparativa_youtube.png" alt="Benchmarking YouTube de las 5 marcas" style="width:100%;border:1px solid var(--line);border-radius:10px;margin:8px 0;display:block;break-inside:avoid;">
+  <p class="src">Fuente: perfiles oficiales de Instagram, TikTok y YouTube de cada marca (Argentina), jun 2026. Lectura: Chevrolet lidera en TikTok y YouTube; BAIC sorprende y supera a Chevrolet en Instagram (285 K vs 225 K).</p>
+
+  <h4>Tráfico del sitio corporativo <span class="pill">Capa MARCA</span></h4>
+  <img src="Evidencias/_comparativas/comparativa_similarweb.png" alt="Benchmarking de tráfico web (SimilarWeb)" style="width:100%;border:1px solid var(--line);border-radius:10px;margin:8px 0;display:block;break-inside:avoid;">
+  <p class="src">Fuente: SimilarWeb (may 2026). Chevrolet domina el tráfico argentino con 745,8 K visitas/mes. *BYD se mide sobre el dominio global byd.com (no tiene .com.ar propio), por eso su cifra es global y no comparable 1:1.</p>
+
+  <h4>Posventa: reseñas de concesionarios <span class="pill gold">el diferencial del TP</span></h4>
+  <img src="Evidencias/_comparativas/comparativa_maps_posventa.png" alt="Benchmarking de reseñas de concesionarios (Google Maps)" style="width:100%;border:1px solid var(--line);border-radius:10px;margin:8px 0;display:block;break-inside:avoid;">
+  <div class="note">Aquí se define nuestra ventaja: las fichas de Google Maps muestran que las <b>reseñas de posventa</b> (estrellas y volumen) son el verdadero campo de batalla. En la ficha de Car One (Chevrolet) aparecen incluso etiquetas críticas como <b>"estafadores" (23)</b> y <b>"desastre" (22)</b> entre las reseñas — evidencia directa de que la atención posventa es el problema #1 a resolver, y la base del ángulo "EV Care".</div>
+  <p class="src">Fuente: Google Maps — concesionarios oficiales de cada marca, jun 2026.</p>
+
+  <h4>Sitios oficiales <span class="pill">auditoría</span></h4>
+  <img src="Evidencias/_comparativas/comparativa_web.png" alt="Webs oficiales de las 5 marcas" style="width:100%;border:1px solid var(--line);border-radius:10px;margin:8px 0;display:block;break-inside:avoid;">
+  <p class="src">Fuente: sitios oficiales de cada marca, jun 2026. El set completo de evidencias (5 marcas × 8 categorías) está disponible en la carpeta <b>/Evidencias</b> y en el anexo del enlace funcional.</p>
+</section>
+
+<!-- ============ 2. FODA ============ -->
+<section id="foda">
+  <span class="kicker">Análisis situacional · diagnóstico</span>
+  <h2><span class="sec-num">2</span> FODA Digital — Chevrolet Spark EUV</h2>
+  <div class="foda">
+    <div class="fo"><h4>💪 Fortalezas</h4><ul>
+      <li>Marca instalada hace +100 años con confianza intergeneracional.</li>
+      <li>Red de concesionarios y talleres en todo el país (única del lote).</li>
+      <li>Ecosistema digital propio: app myChevrolet, OnStar, GM Owner Center, agenda de servicio online.</li>
+      <li>Capacidad de financiación y plan de ahorro propios.</li>
+    </ul></div>
+    <div class="fa"><h4>⚠️ Debilidades</h4><ul>
+      <li>Volumen y notoriedad en el canal EV muy por debajo de BYD.</li>
+      <li>Poca producción de contenido digital específico del Spark EUV.</li>
+      <li>Precio inicial percibido más alto que rivales chinos.</li>
+      <li>Garantía más corta en papel (3 años/100.000 km) vs BYD (6 años + 8 de batería) y JMEV (8 de batería).</li>
+      <li>Comunicación de posventa hoy genérica, no diferenciada para eléctricos.</li>
+    </ul></div>
+    <div class="fde"><h4>🚀 Oportunidades</h4><ul>
+      <li>Mercado EV creciendo +760%: la torta se agranda para todos.</li>
+      <li>La posventa es la <b>mayor angustia</b> del comprador EV → terreno libre para liderar.</li>
+      <li>Adopción urbana concentrada → inversión geolocalizada eficiente.</li>
+      <li>IA aplicada a personalización y atención 24/7 (chatbots, contenido dinámico).</li>
+    </ul></div>
+    <div class="fam"><h4>🌩️ Amenazas</h4><ul>
+      <li>Dominio aplastante de BYD (74% del mercado entre 2 modelos).</li>
+      <li>Guerra de precios por la apertura de importaciones chinas.</li>
+      <li>Suba de costos de carga (aumento YPF a usuarios EV).</li>
+      <li>Infraestructura de carga aún limitada fuera de las grandes ciudades.</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- ============ 3. OBJETIVOS ============ -->
+<section id="objetivos">
+  <span class="kicker">Análisis situacional · objetivos</span>
+  <h2><span class="sec-num">3</span> Objetivos SMART (3 meses)</h2>
+  <p class="lead">Cada objetivo se desprende del diagnóstico y se conecta luego con una táctica, un KPI y una parte del presupuesto (coherencia exigida por la rúbrica).</p>
+  <div style="overflow-x:auto;">
+  <table>
+    <tr><th>#</th><th>Objetivo SMART</th><th>Métrica / benchmark</th><th>Se conecta con</th></tr>
+    <tr><td>O1</td><td><b>Notoriedad:</b> aumentar +40% el alcance y +30% los seguidores de Chevrolet en el segmento EV en CABA, Córdoba, Rosario, Mendoza y Bahía Blanca en 3 meses.</td><td>Reach, nuevos seguidores, share of voice EV</td><td>Social + Influencers (TOFU)</td></tr>
+    <tr><td>O2</td><td><b>Consideración:</b> generar <b>900 leads calificados</b> y <b>300 test drives agendados</b> en 90 días.</td><td>Leads, CPL, test drives, CTR Search</td><td>Search + Landing + Lead magnet (MOFU)</td></tr>
+    <tr><td>O3</td><td><b>Conversión:</b> atribuir <b>≥ 60 reservas/ventas</b> a los canales digitales en el trimestre.</td><td>Ventas atribuidas, CAC, tasa de cierre</td><td>Remarketing + Experience Centers (BOFU)</td></tr>
+    <tr><td>O4</td><td><b>Fidelización (el diferencial):</b> lograr que el <b>70% de los nuevos compradores</b> active el programa de posventa digital y agende su 1er service.</td><td>% adopción posventa, agendas creadas</td><td>Onboarding + App + CRM (Loyalty loop)</td></tr>
+    <tr><td>O5</td><td><b>Reputación:</b> alcanzar un <b>NPS ≥ 60</b> y 4,5★ promedio en reseñas de servicio durante el período.</td><td>NPS, rating Google, reseñas posventa</td><td>Experiencia + Email + Seguimiento</td></tr>
+  </table></div>
+</section>
+
+<!-- ============ 4. ESTRATEGIA TÁCTICA ============ -->
+<section id="estrategia">
+  <span class="kicker">Paso 2 de la consigna</span>
+  <h2><span class="sec-num">4</span> Estrategia Táctica</h2>
+  <p class="lead">Definición de audiencias, canales y embudo de conversión.</p>
+
+  <h3>4.1 · Segmentación de audiencias (buyer personas)</h3>
+  <div class="grid g3">
+    <div class="card"><h4>🏙️ “Pionero urbano”</h4><p style="font-size:.88rem;">28–45, CABA/Córdoba/Rosario, profesional, eco-consciente y tecnológico. <b>Miedo clave:</b> “¿quién me lo arregla y mantiene la garantía?”. Le hablamos con <b>respaldo y posventa</b>.</p></div>
+    <div class="card"><h4>👨‍👩‍👧 “Familia que ahorra”</h4><p style="font-size:.88rem;">35–50, segundo auto para ciudad, sensible al costo total. Le mostramos <b>ahorro en combustible + mantenimiento reducido + financiación Chevrolet</b>.</p></div>
+    <div class="card"><h4>🏢 “Flota / corporativo”</h4><p style="font-size:.88rem;">PYMEs y empresas con responsabilidad ambiental. Le ofrecemos <b>gestión de flota, posventa programada y reporting de uso</b> (B2B).</p></div>
+  </div>
+
+  <h3>4.2 · Mix de canales</h3>
+  <div class="grid g4">
+    <div class="card"><h4>🔎 Search (SEM/SEO)</h4><p style="font-size:.85rem;">Google Ads sobre intención de compra y keywords de posventa EV; SEO de “servicio auto eléctrico”.</p></div>
+    <div class="card"><h4>📱 Social Ads</h4><p style="font-size:.85rem;">Meta + TikTok geolocalizado en las 5 ciudades. Awareness y captación de leads.</p></div>
+    <div class="card"><h4>🤝 Influencers</h4><p style="font-size:.85rem;">Creadores de autos/tech/lifestyle sustentable que prueben el service y la experiencia, no solo el auto.</p></div>
+    <div class="card"><h4>✉️ CRM / Email + App</h4><p style="font-size:.85rem;">Automatización de nurturing, onboarding y posventa vía myChevrolet y email (motor de fidelización).</p></div>
+  </div>
+
+  <h3>4.3 · Embudo de conversión + Loop de fidelización</h3>
+  <div class="funnel">
+    <div class="step f1"><div class="lbl">TOFU · Awareness</div><div class="desc">Social Ads + Influencers + contenido “mitos del eléctrico” → reach y comunidad</div></div>
+    <div class="step f2"><div class="lbl">MOFU · Consideración</div><div class="desc">Search + Lead magnet (“Guía de posventa EV”) + comparativas → leads y test drives</div></div>
+    <div class="step f3"><div class="lbl">BOFU · Conversión</div><div class="desc">Remarketing + Experience Center + financiación → reserva / venta</div></div>
+    <div class="step f4"><div class="lbl">♻️ LOYALTY LOOP · Posventa</div><div class="desc">Capacitación de entrega + agenda de service + reportes de uso → recompra y referidos</div></div>
+  </div>
+  <div class="note"><b>Nuestra diferencia frente a la competencia:</b> los rivales chinos terminan su embudo en la venta. Nosotros agregamos un <b>cuarto nivel (Loyalty Loop)</b> que retroalimenta el embudo: un cliente bien atendido en posventa se convierte en prueba social, reseña y referido — bajando el costo de adquisición de los siguientes.</div>
+</section>
+
+<!-- ============ 5. LA GRAN IDEA ============ -->
+<section id="angulo">
+  <span class="kicker">La propuesta diferencial · creatividad</span>
+  <h2><span class="sec-num">5</span> La Gran Idea: “Chevrolet EV Care”</h2>
+  <p class="lead">Puntos de venta especializados + entrega con capacitación + posventa inteligente con seguimiento por rating de uso. Es el corazón creativo que rompe el ruido publicitario.</p>
+
+  <div class="grid g2" style="align-items:start;">
+    <div>
+      <h3>El concepto</h3>
+      <p>Transformamos la red instalada de Chevrolet en <b>“EV Experience Centers”</b>: puntos especializados en eléctricos ubicados en los <b>nodos estratégicos</b> de las 5 ciudades prioritarias —CABA, Córdoba, Rosario, Mendoza y Bahía Blanca— (cerca de zonas de alto tránsito profesional y de la infraestructura de carga). No es solo un local de venta: es un centro de experiencia, entrega y servicio.</p>
+    </div>
+    <div>
+      <!-- mini mapa SVG -->
+      <svg viewBox="0 0 300 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" aria-label="puntos">
+        <rect width="300" height="200" rx="12" fill="#eef3fb"/>
+        <path d="M150 20 C120 60 110 120 150 180 C190 120 180 60 150 20Z" fill="#dfe9f7" stroke="#9bb8e0"/>
+        <g font-size="9" fill="#1f6fbf" font-family="sans-serif">
+          <circle cx="150" cy="70" r="7" fill="#C9A227"/><text x="160" y="73">CABA</text>
+          <circle cx="120" cy="110" r="6" fill="#19A974"/><text x="60" y="113">Rosario</text>
+          <circle cx="130" cy="55" r="6" fill="#19A974"/><text x="138" y="50">Córdoba</text>
+          <circle cx="100" cy="150" r="6" fill="#19A974"/><text x="40" y="153">Mendoza</text>
+          <circle cx="150" cy="138" r="5" fill="#19A974"/><text x="158" y="141">B. Blanca</text>
+        </g>
+        <text x="12" y="192" font-size="8" fill="#6b6b6b" font-family="sans-serif">Nodos según adopción EV + red de carga</text>
+      </svg>
+    </div>
+  </div>
+
+  <h3>Los 4 pilares del programa</h3>
+  <div class="steps">
+    <div class="st"><div><b>Entrega con capacitación de uso (“Onboarding EV”)</b><br><span style="font-size:.9rem;color:var(--ink-soft)">Cada cliente recibe una sesión práctica al retirar el auto: cómo cargar para maximizar la autonomía, cuidado de la batería, conducción eficiente y uso de la app. Maximiza la experiencia y reduce reclamos. Se documenta en video corto → contenido social.</span></div></div>
+    <div class="st"><div><b>Agenda de service e inspección por cronograma de fábrica</b><br><span style="font-size:.9rem;color:var(--ink-soft)">Micrositio + app que agenda automáticamente cada service e inspección según el plan del fabricante. El cliente nunca se atrasa y la garantía queda siempre vigente — atacando la angustia #1 del mercado.</span></div></div>
+    <div class="st"><div><b>Reportes y seguimiento por “Rating de Uso”</b><br><span style="font-size:.9rem;color:var(--ink-soft)">Cada cliente recibe un reporte personalizado de su uso (km, eficiencia, hábitos de carga) y un “score” de salud del vehículo. Gamifica el buen uso, anticipa mantenimiento y genera datos para CRM y segmentación dinámica.</span></div></div>
+    <div class="st"><div><b>Loyalty loop: reseñas, referidos y recompra</b><br><span style="font-size:.9rem;color:var(--ink-soft)">El cliente satisfecho se convierte en prueba social. Programa de referidos con beneficios en service y plan de recompra/upgrade. La posventa se vuelve canal de adquisición.</span></div></div>
+  </div>
+
+  <h3>Ideas adicionales alineadas (creatividad disruptiva)</h3>
+  <ul class="clean">
+    <li><b>“Garantía a la vista”:</b> campaña que muestra el taller y los técnicos certificados en EV — vender confianza con transparencia radical frente a la opacidad de los rivales.</li>
+    <li><b>Chatbot con IA “Chevy Asistente EV”:</b> atención 24/7 que responde dudas de carga/autonomía y agenda service (aplica la Unidad de IA del programa).</li>
+    <li><b>Contenido “Mito vs Realidad del eléctrico”:</b> serie en TikTok/Reels que desactiva objeciones de compra (autonomía, batería, costo).</li>
+    <li><b>Test drive “de barrio”:</b> el auto va al cliente en su zona, no al revés — aprovecha la concentración urbana.</li>
+    <li><b>Co-marketing con redes de carga</b> para mostrar dónde y cómo cargar, reforzando la practicidad.</li>
+  </ul>
+</section>
+
+<!-- ============ 6. PLAN OPERATIVO ============ -->
+<section id="operativo">
+  <span class="kicker">Paso 3 de la consigna</span>
+  <h2><span class="sec-num">6</span> Plan Operativo — Calendario / Gantt</h2>
+  <p class="lead">Ejecución a 12 semanas (3 meses). Incremental: cada mes construye sobre el anterior.</p>
+  <div class="gantt">
+  <table>
+    <tr><th>Etapa / Acción</th>
+      <th>S1</th><th>S2</th><th>S3</th><th>S4</th><th>S5</th><th>S6</th><th>S7</th><th>S8</th><th>S9</th><th>S10</th><th>S11</th><th>S12</th></tr>
+    <tr><td class="stagecell">Setup: auditoría, píxel, CRM, landing</td>
+      <td colspan="2"><span class="bar m1"></span></td><td colspan="10"></td></tr>
+    <tr><td class="stagecell">Mes 1 · Awareness (Social + Influencers)</td>
+      <td></td><td colspan="4"><span class="bar m2"></span></td><td colspan="7"></td></tr>
+    <tr><td class="stagecell">Mes 1–2 · Search siempre activo</td>
+      <td colspan="2"></td><td colspan="9"><span class="bar m3"></span></td><td></td></tr>
+    <tr><td class="stagecell">Mes 2 · Consideración (lead magnet, test drives)</td>
+      <td colspan="4"></td><td colspan="4"><span class="bar m1"></span></td><td colspan="4"></td></tr>
+    <tr><td class="stagecell">Mes 2–3 · Remarketing & conversión</td>
+      <td colspan="6"></td><td colspan="6"><span class="bar m4"></span></td></tr>
+    <tr><td class="stagecell">Lanzamiento “EV Care” + Onboarding</td>
+      <td colspan="7"></td><td colspan="5"><span class="bar m2"></span></td></tr>
+    <tr><td class="stagecell">Posventa digital + reportes de uso</td>
+      <td colspan="8"></td><td colspan="4"><span class="bar m3"></span></td></tr>
+    <tr><td class="stagecell">Medición, optimización y reporte al cliente</td>
+      <td colspan="3"></td><td><span class="bar m1"></span></td><td colspan="3"></td><td><span class="bar m1"></span></td><td colspan="3"></td><td><span class="bar m1"></span></td></tr>
+  </table></div>
+  <p class="src">Hitos de medición al cierre de cada mes (S4, S8, S12). Leyenda: 🟡 setup/medición · 🟢 awareness/posventa · 🔵 search · 🟣 conversión.</p>
+</section>
+
+<!-- ============ 7. PLAN DE CONTENIDOS ============ -->
+<section id="contenidos">
+  <span class="kicker">Paso 4 de la consigna</span>
+  <h2><span class="sec-num">7</span> Plan de Contenidos</h2>
+  <p class="lead">Propuesta creativa de piezas por canal: Social Media · Influencers · Search.</p>
+
+  <div class="grid g3">
+    <div class="card"><h4>📱 Social Media</h4>
+      <ul class="clean" style="font-size:.85rem;">
+        <li>Reels “Mito vs Realidad EV” (objeciones)</li>
+        <li>Carrusel “5 cosas que tu eléctrico necesita” (posventa)</li>
+        <li>Video onboarding real de un cliente</li>
+        <li>Stories de agenda de service / app</li>
+      </ul></div>
+    <div class="card"><h4>🤝 Influencers</h4>
+      <ul class="clean" style="font-size:.85rem;">
+        <li>Creador de autos prueba el Spark + el service</li>
+        <li>Microinfluencer eco/lifestyle: vida con EV 30 días</li>
+        <li>Tech reviewer: la app y el rating de uso</li>
+      </ul></div>
+    <div class="card"><h4>🔎 Search</h4>
+      <ul class="clean" style="font-size:.85rem;">
+        <li>Campaña intención: “comprar auto eléctrico”</li>
+        <li>Campaña posventa: “service auto eléctrico”</li>
+        <li>SEO: nota “garantía y mantenimiento EV”</li>
+        <li>Extensiones con turno de test drive</li>
+      </ul></div>
+  </div>
+
+  <h3>Ejemplos visuales de piezas (mockups)</h3>
+  <div class="grid g3">
+    <!-- mock reel -->
+    <div class="placeholder" style="padding:0;overflow:hidden;">
+      <svg viewBox="0 0 180 300" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <rect width="180" height="300" fill="#0E0E0E"/><rect x="0" y="0" width="180" height="300" fill="url(#g1)" opacity="0"/>
+        <rect x="14" y="14" width="80" height="16" rx="8" fill="#C9A227"/><text x="20" y="26" font-size="9" fill="#000" font-family="sans-serif">SPARK EUV</text>
+        <text x="16" y="150" font-size="15" fill="#fff" font-family="sans-serif" font-weight="bold">¿Y la garantía?</text>
+        <text x="16" y="172" font-size="11" fill="#19A974" font-family="sans-serif">Te la mantenemos nosotros.</text>
+        <circle cx="90" cy="245" r="22" fill="#19A974"/><path d="M86 235 l-6 14 h6 l-2 10 l12 -16 h-7z" fill="#fff"/>
+        <text x="40" y="290" font-size="8" fill="#888" font-family="sans-serif">Reel · Mito vs Realidad</text>
+      </svg>
+    </div>
+    <!-- mock post posventa -->
+    <div class="placeholder" style="padding:0;overflow:hidden;">
+      <svg viewBox="0 0 180 300" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <rect width="180" height="300" fill="#fafafa"/>
+        <rect x="0" y="0" width="180" height="80" fill="#C9A227"/>
+        <text x="14" y="46" font-size="13" fill="#000" font-family="sans-serif" font-weight="bold">EV CARE</text>
+        <text x="14" y="62" font-size="8" fill="#3a2e08" font-family="sans-serif">Tu auto, siempre al día</text>
+        <rect x="14" y="100" width="152" height="40" rx="8" fill="#fff" stroke="#e4e4e4"/><text x="24" y="124" font-size="9" fill="#0E0E0E" font-family="sans-serif">📅 Agendá tu service online</text>
+        <rect x="14" y="150" width="152" height="40" rx="8" fill="#fff" stroke="#e4e4e4"/><text x="24" y="174" font-size="9" fill="#0E0E0E" font-family="sans-serif">📊 Reporte de uso mensual</text>
+        <rect x="14" y="200" width="152" height="40" rx="8" fill="#fff" stroke="#e4e4e4"/><text x="24" y="224" font-size="9" fill="#0E0E0E" font-family="sans-serif">⭐ Rating de tu vehículo</text>
+        <text x="40" y="285" font-size="8" fill="#888" font-family="sans-serif">Post · Programa posventa</text>
+      </svg>
+    </div>
+    <!-- mock search ad -->
+    <div class="placeholder" style="padding:0;overflow:hidden;">
+      <svg viewBox="0 0 180 300" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <rect width="180" height="300" fill="#fff"/>
+        <text x="14" y="40" font-size="9" fill="#1a0dab" font-family="sans-serif" font-weight="bold">Chevrolet Spark EUV | Service</text>
+        <text x="14" y="56" font-size="8" fill="#006621" font-family="sans-serif">www.chevrolet.com.ar/ev-care ·</text>
+        <text x="14" y="74" font-size="7.5" fill="#444" font-family="sans-serif">El eléctrico con la red de</text>
+        <text x="14" y="86" font-size="7.5" fill="#444" font-family="sans-serif">posventa más grande del país.</text>
+        <text x="14" y="98" font-size="7.5" fill="#444" font-family="sans-serif">Agendá tu test drive hoy.</text>
+        <rect x="14" y="116" width="60" height="18" rx="4" fill="#19A974"/><text x="20" y="129" font-size="7" fill="#fff" font-family="sans-serif">Test drive ›</text>
+        <text x="14" y="165" font-size="7" fill="#888" font-family="sans-serif">Anuncio · Google Ads</text>
+        <text x="40" y="290" font-size="8" fill="#888" font-family="sans-serif">Search · Intención</text>
+      </svg>
+    </div>
+  </div>
+  <div class="warn">Reemplazar los mockups por <b>piezas finales diseñadas en Canva</b> antes de la entrega (la rúbrica valora calidad visual). El equipo de diseño puede usar estos como guion.</div>
+</section>
+
+<!-- ============ 8. PRESUPUESTO Y KPI ============ -->
+<section id="presupuesto">
+  <span class="kicker">Paso 5 de la consigna</span>
+  <h2><span class="sec-num">8</span> Presupuesto (3 meses)</h2>
+  <div class="warn"><b>Cifras de referencia — a validar con el grupo.</b> Presupuesto total estimado: <b>ARS 36.000.000</b> (~USD 30k) para una campaña de consultoría a 90 días. Ajustar según lo que defina el equipo / el “cliente”.</div>
+  <div style="overflow-x:auto;">
+  <table>
+    <tr><th>Partida</th><th>Detalle</th><th class="num">% inversión</th><th class="num">Monto (ARS)</th></tr>
+    <tr><td>Paid Social (Meta + TikTok)</td><td>Awareness + leads, geolocalizado 5 ciudades</td><td class="num">28%</td><td class="num">10.080.000</td></tr>
+    <tr><td>Search (Google Ads)</td><td>Intención de compra + keywords posventa</td><td class="num">22%</td><td class="num">7.920.000</td></tr>
+    <tr><td>Influencers</td><td>1 macro + 4 micro, foco experiencia/posventa</td><td class="num">15%</td><td class="num">5.400.000</td></tr>
+    <tr><td>Producción de contenido</td><td>Reels, fotos, mockups, video onboarding</td><td class="num">12%</td><td class="num">4.320.000</td></tr>
+    <tr><td>Plataforma posventa “EV Care”</td><td>Micrositio de agenda + reportes + integración app</td><td class="num">10%</td><td class="num">3.600.000</td></tr>
+    <tr><td>CRM / Email / Automatización</td><td>Nurturing, onboarding, IA chatbot</td><td class="num">8%</td><td class="num">2.880.000</td></tr>
+    <tr><td>Medición y fee de gestión</td><td>Analytics, dashboards, optimización</td><td class="num">5%</td><td class="num">1.800.000</td></tr>
+    <tr class="tot"><td colspan="2">TOTAL</td><td class="num">100%</td><td class="num">36.000.000</td></tr>
+  </table></div>
+  <p class="src">Distribución coherente con los objetivos: el grueso va a captación (Social+Search = 50%), pero se reserva 1 de cada 5 pesos al diferencial de posventa (plataforma + CRM = 18%), que es lo que sostiene la fidelización.</p>
+</section>
+
+<section id="kpi">
+  <span class="kicker">Paso 5 de la consigna</span>
+  <h2><span class="sec-num">8.2</span> KPI alineados a objetivos</h2>
+  <div style="overflow-x:auto;">
+  <table>
+    <tr><th>Objetivo</th><th>KPI principal</th><th>Meta 90 días</th><th>Etapa embudo</th></tr>
+    <tr><td>O1 Notoriedad</td><td>Alcance / nuevos seguidores / Share of Voice</td><td>+40% reach · +30% followers</td><td>TOFU</td></tr>
+    <tr><td>O2 Consideración</td><td>Leads calificados · CPL · Test drives</td><td>900 leads · 300 test drives</td><td>MOFU</td></tr>
+    <tr><td>O2 Consideración</td><td>CTR Search · Quality Score</td><td>CTR ≥ 4% · QS ≥ 7</td><td>MOFU</td></tr>
+    <tr><td>O3 Conversión</td><td>Ventas atribuidas · CAC</td><td>≥ 60 ventas · CAC ↓ 15%</td><td>BOFU</td></tr>
+    <tr><td>O4 Fidelización</td><td>% adopción posventa · agendas creadas</td><td>70% activa “EV Care”</td><td>Loyalty</td></tr>
+    <tr><td>O5 Reputación</td><td>NPS · rating de reseñas</td><td>NPS ≥ 60 · 4,5★</td><td>Loyalty</td></tr>
+  </table></div>
+  <div class="note"><b>Consistencia integral (criterio 9 de la rúbrica):</b> cada fila del presupuesto financia una táctica, cada táctica persigue un objetivo SMART, y cada objetivo tiene su KPI. Diagnóstico → Objetivos → Tácticas → Presupuesto → KPI forman una sola cadena lógica.</div>
+</section>
+
+<!-- ============ CIERRE ============ -->
+<section>
+  <span class="kicker">Cierre</span>
+  <h2><span class="sec-num">✓</span> Síntesis de la propuesta</h2>
+  <p class="lead" style="font-size:1.1rem;">En un mercado donde todos venden el auto más barato, Chevrolet vende lo que ningún chino puede todavía: <b>la certeza de que vas a estar acompañado durante toda la vida del vehículo.</b> Convertimos la posventa —la mayor angustia del comprador eléctrico— en el motor de adquisición, conversión y fidelización. Esa es la jugada del Grupo 31.</p>
+</section>
+
+<!-- ============ ANEXO INTERNO (NO ENTREGAR) ============ -->
+<section id="interno" class="internal">
+  <span class="kicker" style="color:#a07d0c;">Anexo de trabajo · NO forma parte de la entrega</span>
+  <h2 style="color:#7a5e09;">🛠️ Para la reunión del equipo: decisiones, puntos ciegos y tareas</h2>
+  <p>Esta sección es para vos y el grupo. Sacala antes de exportar el PDF final.</p>
+
+  <h3>A · Decisiones que necesito de ustedes (me destraban para afinar el TP)</h3>
+  <div class="q"><b>1. Presupuesto:</b> ¿trabajamos con los ARS 36M de referencia o el “cliente”/profe dio una cifra? Cambia toda la tabla de inversión.</div>
+  <div class="q"><b>2. Ciudades:</b> ¿confirmamos CABA + Córdoba + Rosario + Mendoza, o suman/sacan alguna (ej. La Plata, Mar del Plata)?</div>
+  <div class="q"><b>3. Formato final de entrega:</b> la consigna pide PDF. ¿Entregamos este informe interactivo como <b>PDF + link a la web</b>, o lo pasamos a presentación (PPTX) / video-pitch? Define cómo termino el material.</div>
+  <div class="q"><b>4. Reparto de roles:</b> ¿quién toma capturas de auditoría, quién diseña piezas en Canva, quién arma el video/pitch? Así sé qué placeholders completar.</div>
+  <div class="q"><b>5. Nombre del docente</b> para la carátula.</div>
+
+  <h3>B · Puntos ciegos a cubrir (riesgos si no los resolvemos)</h3>
+  <ul class="clean gold">
+    <li><b>Realidad del producto:</b> el Spark EUV figura con 167 unidades en el dato 2026, pero conviene chequear specs y precio oficial reales para no inventar. Si el dato no existe, declararlo como “supuesto de trabajo” (la consigna lo permite).</li>
+    <li><b>Datos exactos de competidores:</b> faltan unidades de JMEV, Jetour y BAIC — completar desde ACARA/ADEFA para que el benchmarking sume punto en la rúbrica.</li>
+    <li><b>Evidencia visual obligatoria:</b> sin las capturas de auditoría/benchmarking reales perdemos el criterio 2. Es lo más urgente a relevar.</li>
+    <li><b>Benchmarks numéricos:</b> las metas (900 leads, 60 ventas, CPL) son estimaciones razonables pero hay que poder defenderlas; conviene anclarlas a un % del mercado real.</li>
+    <li><b>Coherencia de extensión:</b> el PDF final debe tener 12–25 páginas. Este informe da material de sobra; cuidar no pasarnos al exportar.</li>
+    <li><b>Aplicación de IA:</b> la consigna dedica varias slides a IA en marketing. Asegurar que el chatbot y el contenido dinámico queden visibles como uso concreto de IA (suma en creatividad).</li>
+  </ul>
+
+  <h3>C · Checklist de la rúbrica (10 criterios) — estado</h3>
+  <table style="font-size:.85rem;">
+    <tr><th>Criterio</th><th>Estado en este borrador</th></tr>
+    <tr><td>1 · Carátula completa</td><td>✅ (falta nombre del docente)</td></tr>
+    <tr><td>2 · Análisis situacional completo</td><td>✅ texto · ⚠️ faltan capturas reales</td></tr>
+    <tr><td>3 · Coherencia objetivos–diagnóstico</td><td>✅</td></tr>
+    <tr><td>4 · Estrategia táctica</td><td>✅</td></tr>
+    <tr><td>5 · Plan operativo (Gantt)</td><td>✅</td></tr>
+    <tr><td>6 · Plan de contenidos visual</td><td>⚠️ mockups guía → reemplazar por piezas Canva</td></tr>
+    <tr><td>7 · Presupuesto distribuido</td><td>✅ (validar cifra)</td></tr>
+    <tr><td>8 · KPI alineados</td><td>✅</td></tr>
+    <tr><td>9 · Consistencia integral</td><td>✅</td></tr>
+    <tr><td>10 · Profesionalismo y creatividad</td><td>✅ idea “EV Care” diferencial</td></tr>
+  </table>
+</section>
+
+<div class="footer">
+  TP Integrador 2026 · “Consultoría de Marketing Digital” · Grupo 31 · Chevrolet Spark EUV<br>
+  Universidad Tecnológica Nacional — Marketing Digital Táctico y Operativo · Entrega 18/06/2026<br>
+  <span style="font-size:.72rem;">Documento de trabajo generado como borrador integral. Exportar a PDF con nombre: TP_Integrador_MarketingMTyO_Grupo31_Chevrolet.pdf</span>
+</div>
+
+</div>
+</body>
+</html>
