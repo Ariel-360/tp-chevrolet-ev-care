@@ -63,7 +63,7 @@ _Fuentes: Ámbito, El Economista, 16 Válvulas, Reporte Asia, Cipolletti Digital
 | Tráfico web (SimilarWeb)                      | —           | ✅ Resuelto: público para Chevrolet/BYD; vía Pro Website Performance para Jetour/JMEV/BAIC |
 | Unidades de competidores (JMEV, Jetour, BAIC) | Ariel       | ⏳ Falta (ACARA/ADEFA)                                                                     |
 | Piezas finales (mockups Social/Calendario)    | Ariel       | ✅ Integradas en carruseles §7 (Claude design)                                            |
-| **Mockups App EV Care (4 pantallas PNG)**     | Ariel       | ⏳ Exportar de Claude design a `design/piezas/app/` (placeholder en el carrusel)           |
+| Mockups App EV Care (4 pantallas)             | Claude      | ✅ Renderizadas (Chrome headless desde Tablero.html) → `design/piezas/app/app_1..4.jpg`    |
 | Publicación GitHub + Pages                    | Claude      | ✅ Repo `Ariel-360/tp-chevrolet-ev-care` + Pages online                                    |
 | PDF explicativo (2 hojas + link + QR)         | Claude      | ✅ `PDF_explicativo.html` con fix de impresión a 2 páginas A4                              |
 | Exportar HTML → PDF final                     | Claude      | ⏳ Cuando lleguen las 4 pantallas de la app                                                |
@@ -74,6 +74,7 @@ _Fuentes: Ámbito, El Economista, 16 Válvulas, Reporte Asia, Cipolletti Digital
 
 ## 🗒️ Bitácora de avances (lo más reciente arriba)
 
+- **18/06/2026 (cierre §7) — Mockups multipantalla como "flipper".** Las piezas con varias pantallas se recorren **en el lugar** con flechas propias (no corren todas) + contador (ej. 2/6); el título detalla cuántas tiene. Las de una sola pantalla no muestran flechas. **Lightbox extendido a galería**: al ampliar una pieza multipantalla se navegan sus pantallas dentro del zoom (flechas + teclado + contador), abriendo en la pantalla actual. **App EV Care: 4 pantallas reales** capturadas a 1080×2160 con **Chrome headless** desde `Tablero.html` (Home/Score, Rating de uso, Agenda, Loyalty) → `design/piezas/app/`. Reemplazó el placeholder.
 - **18/06/2026 — Pulido hacia la visual final.**
   - **Publicado en GitHub** (repo `Ariel-360/tp-chevrolet-ev-care`, directo a `main`) + **GitHub Pages** sirviendo el HTML (fix `.nojekyll` para que se vean las `_comparativas/`). URL pública: `https://ariel-360.github.io/tp-chevrolet-ev-care/TP_Integrador_MarketingMTyO_Grupo31_Chevrolet.html`.
   - **Evidencia §1.6:** montajes comparativos **recortados a la zona clave** (seguidores/reseñas legibles; se resolvió un bug de colisión de variables en PowerShell que los recortaba mal) + **lightbox in-page** (clic amplía sin salir de la página).
