@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Demo · Carrusel deslizable de piezas</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--gold:#C9A227;--ink:#0E0E0E;--ev:#19A974;--bg:#f6f6f4;--line:#e4e4e4;--mute:#6b6b6b;--paper:#fff;}
+  body{margin:0;background:var(--bg);font-family:"Inter",system-ui,sans-serif;color:var(--ink);padding:30px 0 60px;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px;}
+  h1{font-family:"Space Grotesk",sans-serif;font-size:1.5rem;}
+  h3{font-family:"Space Grotesk",sans-serif;display:flex;align-items:center;gap:10px;margin:26px 0 6px;}
+  .pill{background:#f6ecc8;color:#7a5e09;font-weight:700;font-size:.7rem;padding:3px 10px;border-radius:30px;}
+  .lead{color:var(--mute);font-size:.95rem;}
+  /* ====== CARRUSEL ====== */
+  .carousel{position:relative;}
+  .track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
+    padding:6px 2px 16px;-webkit-overflow-scrolling:touch;scrollbar-width:thin;cursor:grab;}
+  .track::-webkit-scrollbar{height:8px;} .track::-webkit-scrollbar-thumb{background:#cfcfcf;border-radius:8px;}
+  .slide{scroll-snap-align:center;flex:0 0 auto;background:var(--paper);border:1px solid var(--line);
+    border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05);}
+  .slide img{display:block;height:380px;width:auto;cursor:zoom-in;}
+  .slide .cap{font-size:.78rem;color:var(--mute);padding:8px 12px;border-top:1px solid var(--line);}
+  .slide .cap b{color:var(--ink);}
+  .nav{position:absolute;top:42%;width:42px;height:42px;border-radius:50%;border:none;cursor:pointer;
+    background:var(--ink);color:#fff;font-size:20px;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:5;opacity:.92;}
+  .nav:hover{background:var(--gold);color:#000;} .nav.prev{left:-8px;} .nav.next{right:-8px;}
+  .hint{font-size:.8rem;color:var(--mute);margin-top:2px;}
+  /* lightbox */
+  #lb{position:fixed;inset:0;background:rgba(14,14,14,.94);display:none;align-items:center;justify-content:center;z-index:99;cursor:zoom-out;padding:3vmin;}
+  #lb.open{display:flex;} #lb img{max-width:94vw;max-height:92vh;border-radius:8px;}
+  #lb .x{position:fixed;top:14px;right:22px;color:#E7CE7A;font-weight:600;font-size:13px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Demo · cómo se verían tus piezas "tipo deslizar"</h1>
+  <p class="lead">Arrastrá con el mouse, usá las flechas, o deslizá con el dedo en el celular. Clic en una pieza para ampliarla. (Estas son imágenes de prueba; van a ir tus mockups reales.)</p>
+
+  <h3>Piezas para Social <span class="pill">deslizá →</span></h3>
+  <div class="hint">Reel · Post posventa · Search ad · Carrusel</div>
+  <div class="carousel">
+    <button class="nav prev" aria-label="Anterior">‹</button>
+    <div class="track">
+      <div class="slide"><img src="piezas/spark_hero.jpg" alt="pieza 1"><div class="cap"><b>A · Reel</b> "Mito vs Realidad" · 1080×1920</div></div>
+      <div class="slide"><img src="piezas/comarketing_mcdonalds.png" alt="pieza 2"><div class="cap"><b>B · Post</b> posventa EV Care · 1080×1350</div></div>
+      <div class="slide"><img src="piezas/spark_hero.jpg" alt="pieza 3"><div class="cap"><b>C · Search ad</b> · 1080×1080</div></div>
+      <div class="slide"><img src="piezas/comarketing_mcdonalds.png" alt="pieza 4"><div class="cap"><b>D · Carrusel</b> "5 cosas..." · 6 slides</div></div>
+    </div>
+    <button class="nav next" aria-label="Siguiente">›</button>
+  </div>
+</div>
+
+<div id="lb"><span class="x">Cerrar · Esc</span><img alt=""></div>
+<script>
+// flechas + arrastre con mouse + lightbox
+document.querySelectorAll('.carousel').forEach(function(c){
+  var track=c.querySelector('.track');
+  var step=function(){ return Math.min(track.clientWidth*0.8, 460); };
+  c.querySelector('.next').onclick=function(){ track.scrollBy({left:step(),behavior:'smooth'}); };
+  c.querySelector('.prev').onclick=function(){ track.scrollBy({left:-step(),behavior:'smooth'}); };
+  var down=false,sx,sl;
+  track.addEventListener('mousedown',function(e){down=true;sx=e.pageX;sl=track.scrollLeft;track.style.cursor='grabbing';});
+  window.addEventListener('mouseup',function(){down=false;track.style.cursor='grab';});
+  track.addEventListener('mousemove',function(e){ if(!down)return; e.preventDefault(); track.scrollLeft=sl-(e.pageX-sx); });
+});
+var lb=document.getElementById('lb'),lbi=lb.querySelector('img');
+document.querySelectorAll('.slide img').forEach(function(i){ i.addEventListener('click',function(){ lbi.src=i.src; lb.classList.add('open'); }); });
+lb.onclick=function(){lb.classList.remove('open');};
+document.addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('open');});
+</script>
+</body>
+</html>
