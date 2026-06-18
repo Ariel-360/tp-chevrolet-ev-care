@@ -167,6 +167,14 @@
   .evgal .egnav:hover{background:var(--gold);color:#000;}
   .evgal .egprev{left:-10px;}.evgal .egnext{right:-10px;}
   @media(max-width:760px){.egcard{flex:0 0 86%;}.evgal .egnav{display:none;}}
+  .eghint{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:2px 0 2px;color:var(--mute);font-size:.82rem;}
+  .eghint .eglabel b{color:var(--ink);}
+  .eghint .egdots{display:inline-flex;gap:6px;align-items:center;}
+  .eghint .egdots i{width:8px;height:8px;border-radius:50%;background:#d8d6cf;transition:all .25s ease;}
+  .eghint .egdots i.on{background:var(--gold);width:22px;border-radius:5px;}
+  .eghint .egar{display:inline-block;color:var(--gold);font-weight:800;animation:egnudge 1.4s ease-in-out infinite;}
+  @keyframes egnudge{0%,100%{transform:translateX(0);}50%{transform:translateX(5px);}}
+  @media print{.eghint{display:none;}}
   @media print{.evgal .egtrack{overflow:visible;flex-wrap:wrap;}.evgal .egnav{display:none;}.egcard .egimg{height:auto;object-fit:contain;}.egcard{break-inside:avoid;}}
   /* lightbox: navegación de galería (piezas con más de una pantalla) */
   #lb .lbnav{position:fixed;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;border:none;cursor:pointer;background:rgba(255,255,255,.12);color:#fff;font-size:26px;display:none;align-items:center;justify-content:center;z-index:10000;}
@@ -415,6 +423,10 @@
       </figure>
     </div>
     <button class="egnav egnext" aria-label="Comparativas siguientes">›</button>
+    <div class="eghint">
+      <span class="egdots" aria-hidden="true"><i class="on"></i><i></i><i></i></span>
+      <span class="eglabel"><b>6 comparativas</b> &mdash; deslizá <span class="egar">&rarr;</span> (o usá las flechas) para ver el resto</span>
+    </div>
   </div>
   <div class="note">Aquí se define nuestra ventaja: las fichas de Google Maps muestran que las <b>reseñas de posventa</b> (estrellas y volumen) son el verdadero campo de batalla. En la ficha de Car One (Chevrolet) aparecen incluso etiquetas críticas como <b>"estafadores" (23)</b> y <b>"desastre" (22)</b> - evidencia directa de que la atención posventa es el problema #1 a resolver, y la base del ángulo "EV Care".</div>
   <p class="src">Fuentes: perfiles oficiales (IG/TikTok/YouTube), SimilarWeb (may 2026), Google Maps y sitios de cada marca, jun 2026. *BYD se mide sobre su dominio global byd.com (no tiene .com.ar). El set completo (5 marcas × 8 categorías) está en la carpeta <b>/Evidencias</b>.</p>
@@ -765,6 +777,9 @@
     window.addEventListener('mouseup',function(){d=false;t.style.cursor='grab';});
     t.addEventListener('mousemove',function(e){if(!d)return;e.preventDefault();mv=Math.abs(e.pageX-sx);t.scrollLeft=sl-(e.pageX-sx);});
     t.querySelectorAll('img').forEach(function(im){im.addEventListener('click',function(ev){if(mv>6){ev.stopPropagation();ev.preventDefault();}},true);});
+    var dots=[].slice.call(g.querySelectorAll('.egdots i'));
+    function updDots(){ if(!dots.length)return; var max=t.scrollWidth-t.clientWidth; var p=max>2?t.scrollLeft/max:0; var idx=Math.round(p*(dots.length-1)); dots.forEach(function(dd,k){dd.classList.toggle('on',k===idx);}); }
+    t.addEventListener('scroll',updDots); window.addEventListener('resize',updDots); updDots();
   });
   /* lightbox con galería (piezas multipantalla se recorren en el zoom) */
   var lb=document.getElementById('lb'), lbImg=lb.querySelector('img'),
