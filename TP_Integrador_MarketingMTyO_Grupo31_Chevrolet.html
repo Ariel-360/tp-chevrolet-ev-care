@@ -123,6 +123,27 @@
   #lb .lbx{position:fixed;top:16px;right:24px;color:#E7CE7A;font:600 13px "Inter",sans-serif;letter-spacing:.5px;}
   img.evid-zoom{cursor:zoom-in;}
   @media print{#lb{display:none!important;}}
+  /* carrusel de piezas (deslizable) */
+  .car{position:relative;margin:8px 0 6px;}
+  .car .track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:6px 2px 14px;cursor:grab;-webkit-overflow-scrolling:touch;}
+  .car .track::-webkit-scrollbar{height:8px;}.car .track::-webkit-scrollbar-thumb{background:#cfcfcf;border-radius:8px;}
+  .car .slide{scroll-snap-align:center;flex:0 0 auto;background:var(--paper);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06);}
+  .car .slide img{display:block;height:330px;width:auto;cursor:zoom-in;}
+  .car .slide .cap{font-size:.74rem;color:var(--mute);padding:7px 11px;border-top:1px solid var(--line);}
+  .car .slide .cap b{color:var(--ink);}
+  .car .nav{position:absolute;top:36%;width:40px;height:40px;border-radius:50%;border:none;cursor:pointer;background:var(--ink);color:#fff;font-size:20px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:5;opacity:.92;}
+  .car .nav:hover{background:var(--gold);color:#000;}.car .nav.prev{left:-6px;}.car .nav.next{right:-6px;}
+  @media print{.car .track{overflow:visible;flex-wrap:wrap;}.car .nav{display:none;}}
+  /* modal co-marketing */
+  .modal{position:fixed;inset:0;background:rgba(14,14,14,.6);display:none;align-items:center;justify-content:center;z-index:300;padding:4vmin;}
+  .modal.open{display:flex;}
+  .modal-card{background:var(--paper);border-radius:16px;max-width:680px;width:100%;max-height:90vh;overflow-y:auto;padding:26px 28px;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.4);}
+  .modal-x{position:absolute;top:12px;right:14px;background:none;border:none;font-size:18px;cursor:pointer;color:var(--mute);}
+  .co-lock{display:flex;align-items:center;gap:12px;margin:8px 0 14px;flex-wrap:wrap;}
+  .co-lock img{height:30px;width:auto;}.co-lock .x{color:var(--gold);font-weight:800;font-size:1.2rem;}
+  .co-stat{background:var(--ev-soft);color:#0a5e3f;font-family:"Space Grotesk",sans-serif;font-weight:700;border-radius:10px;padding:10px 14px;text-align:center;margin:12px 0;font-size:1.05rem;}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:14px;font-size:.9rem;margin:10px 0;}
+  @media(max-width:620px){.cols{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -462,10 +483,13 @@
     <li><b>Test drive “de barrio”:</b> el auto va al cliente en su zona, no al revés. Es el <b>puente entre lo online y lo presencial</b>: el lead que captamos en digital se cierra con una experiencia física en el barrio, y esa experiencia vuelve al online como contenido y reseña.</li>
     <li><b>Co-marketing con redes de carga (idea estrella):</b> alianzas con cadenas que ya tienen cargadores en sus locales (por ejemplo, <b>McDonald’s</b>) para una sinergia muy visual: <b>mientras el Spark EUV carga, su dueño carga un café</b>. Convertimos el “tiempo muerto” de carga en experiencia de marca y en puntos de contacto de alto tránsito (ver concepto visual abajo).</li>
   </ul>
-  <div style="margin-top:16px;">
-    <span class="kicker" style="color:var(--gold)">Concepto visual · co-marketing</span>
-    <img src="design/piezas/comarketing_mcdonalds.png" class="zoomable" alt="Concepto de co-marketing Chevrolet EV Care y McDonald's" style="width:100%;max-width:780px;border:1px solid var(--line);border-radius:12px;margin:8px 0;display:block;cursor:zoom-in;">
-    <p class="src">Mockup de concepto. La idea: aprovechar cargadores en locales de alto tránsito para convertir el tiempo de carga en experiencia de marca (online ↔ presencial ↔ online).</p>
+  <div style="margin-top:16px;background:#0E0E0E;border-radius:13px;padding:16px 18px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:space-between;">
+    <div style="flex:1;min-width:240px;">
+      <span class="kicker" style="color:var(--gold)">Idea de co-marketing · la jugada visual</span>
+      <div style="color:#fff;font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:700;margin:5px 0 2px;">EV Care &times; McDonald&rsquo;s</div>
+      <div style="color:#ddd;font-size:.9rem;">Mientras tu Spark EUV carga, vos cargás energía. El &ldquo;tiempo muerto&rdquo; de carga se vuelve experiencia de marca.</div>
+    </div>
+    <button onclick="document.getElementById('comodal').classList.add('open');document.body.style.overflow='hidden';" style="background:var(--ev);color:#fff;border:none;border-radius:10px;padding:12px 18px;font-weight:700;font-size:.92rem;cursor:pointer;font-family:'Space Grotesk',sans-serif;white-space:nowrap;">Abrir la propuesta &rarr;</button>
   </div>
 </section>
 
@@ -528,47 +552,38 @@
   </div>
 
   <h3>Ejemplos visuales de piezas (mockups)</h3>
-  <div class="grid g3">
-    <!-- mock reel -->
-    <div class="placeholder" style="padding:0;overflow:hidden;">
-      <svg viewBox="0 0 180 300" width="100%" xmlns="http://www.w3.org/2000/svg">
-        <rect width="180" height="300" fill="#0E0E0E"/><rect x="0" y="0" width="180" height="300" fill="url(#g1)" opacity="0"/>
-        <rect x="14" y="14" width="80" height="16" rx="8" fill="#C9A227"/><text x="20" y="26" font-size="9" fill="#000" font-family="sans-serif">SPARK EUV</text>
-        <text x="16" y="150" font-size="15" fill="#fff" font-family="sans-serif" font-weight="bold">¿Y la garantía?</text>
-        <text x="16" y="172" font-size="11" fill="#19A974" font-family="sans-serif">Te la mantenemos nosotros.</text>
-        <circle cx="90" cy="245" r="22" fill="#19A974"/><path d="M86 235 l-6 14 h6 l-2 10 l12 -16 h-7z" fill="#fff"/>
-        <text x="40" y="290" font-size="8" fill="#888" font-family="sans-serif">Reel · Mito vs Realidad</text>
-      </svg>
+  <p class="lead">Piezas finales diseñadas con el sistema de marca (Claude design). <span class="pill gold">Deslizá &rarr; o usá las flechas · clic para ampliar</span></p>
+
+  <h4><svg class="ico"><use href="#i-mobile"/></svg> Social &mdash; Post, Search ad y Carrusel</h4>
+  <div class="car">
+    <button class="nav prev" aria-label="Anterior">‹</button>
+    <div class="track">
+      <div class="slide"><img class="zoomable" src="design/piezas/social/post.jpg" alt="<b>Post</b> · posventa EV Care"><div class="cap"><b>Post</b> · posventa EV Care</div></div>
+      <div class="slide"><img class="zoomable" src="design/piezas/social/searchad.jpg" alt="<b>Search ad</b> · Google"><div class="cap"><b>Search ad</b> · Google</div></div>
+      <div class="slide"><img class="zoomable" src="design/piezas/social/carrusel_1_portada.jpg" alt="<b>Carrusel 1/6</b> · portada"><div class="cap"><b>Carrusel 1/6</b> · portada</div></div>
+      <div class="slide"><img class="zoomable" src="design/piezas/social/carrusel_2.jpg" alt="Carrusel 2/6 · Carga inteligente"><div class="cap">Carrusel 2/6 · Carga inteligente</div></div>
+      <div class="slide"><img class="zoomable" src="design/piezas/social/carrusel_3.jpg" alt="Carrusel 3/6 · Service en red"><div class="cap">Carrusel 3/6 · Service en red</div></div>
+      <div class="slide"><img class="zoomable" src="design/piezas/social/carrusel_4.jpg" alt="Carrusel 4/6 · Software al día"><div class="cap">Carrusel 4/6 · Software al día</div></div>
+      <div class="slide"><img class="zoomable" src="design/piezas/social/carrusel_5.jpg" alt="Carrusel 5/6 · Neumáticos y frenos"><div class="cap">Carrusel 5/6 · Neumáticos y frenos</div></div>
+      <div class="slide"><img class="zoomable" src="design/piezas/social/carrusel_6.jpg" alt="Carrusel 6/6 · Chequeo de batería"><div class="cap">Carrusel 6/6 · Chequeo de batería</div></div>
     </div>
-    <!-- mock post posventa -->
-    <div class="placeholder" style="padding:0;overflow:hidden;">
-      <svg viewBox="0 0 180 300" width="100%" xmlns="http://www.w3.org/2000/svg">
-        <rect width="180" height="300" fill="#fafafa"/>
-        <rect x="0" y="0" width="180" height="80" fill="#C9A227"/>
-        <text x="14" y="46" font-size="13" fill="#000" font-family="sans-serif" font-weight="bold">EV CARE</text>
-        <text x="14" y="62" font-size="8" fill="#3a2e08" font-family="sans-serif">Tu auto, siempre al día</text>
-        <rect x="14" y="100" width="152" height="40" rx="8" fill="#fff" stroke="#e4e4e4"/><text x="24" y="124" font-size="9" fill="#0E0E0E" font-family="sans-serif">Agendá tu service online</text>
-        <rect x="14" y="150" width="152" height="40" rx="8" fill="#fff" stroke="#e4e4e4"/><text x="24" y="174" font-size="9" fill="#0E0E0E" font-family="sans-serif">Reporte de uso mensual</text>
-        <rect x="14" y="200" width="152" height="40" rx="8" fill="#fff" stroke="#e4e4e4"/><text x="24" y="224" font-size="9" fill="#0E0E0E" font-family="sans-serif">Rating de tu vehículo</text>
-        <text x="40" y="285" font-size="8" fill="#888" font-family="sans-serif">Post · Programa posventa</text>
-      </svg>
-    </div>
-    <!-- mock search ad -->
-    <div class="placeholder" style="padding:0;overflow:hidden;">
-      <svg viewBox="0 0 180 300" width="100%" xmlns="http://www.w3.org/2000/svg">
-        <rect width="180" height="300" fill="#fff"/>
-        <text x="14" y="40" font-size="9" fill="#1a0dab" font-family="sans-serif" font-weight="bold">Chevrolet Spark EUV | Service</text>
-        <text x="14" y="56" font-size="8" fill="#006621" font-family="sans-serif">www.chevrolet.com.ar/ev-care ·</text>
-        <text x="14" y="74" font-size="7.5" fill="#444" font-family="sans-serif">El eléctrico con la red de</text>
-        <text x="14" y="86" font-size="7.5" fill="#444" font-family="sans-serif">posventa más grande del país.</text>
-        <text x="14" y="98" font-size="7.5" fill="#444" font-family="sans-serif">Agendá tu test drive hoy.</text>
-        <rect x="14" y="116" width="60" height="18" rx="4" fill="#19A974"/><text x="20" y="129" font-size="7" fill="#fff" font-family="sans-serif">Test drive ›</text>
-        <text x="14" y="165" font-size="7" fill="#888" font-family="sans-serif">Anuncio · Google Ads</text>
-        <text x="40" y="290" font-size="8" fill="#888" font-family="sans-serif">Search · Intención</text>
-      </svg>
-    </div>
+    <button class="nav next" aria-label="Siguiente">›</button>
   </div>
-  <div class="warn">Reemplazar los mockups por <b>piezas finales diseñadas en Canva</b> antes de la entrega (la rúbrica valora calidad visual). El equipo de diseño puede usar estos como guion.</div>
+
+  <h4><svg class="ico"><use href="#i-loop"/></svg> App &ldquo;EV Care&rdquo; &mdash; 4 pantallas</h4>
+  <div class="placeholder">Mockups de la app EV Care (Home/Score · Rating de uso · Agenda · Loyalty) diseñados en Claude design. Exportá las 4 pantallas como PNG a <b>design/piezas/app/</b> y se suman a este carrusel.</div>
+
+  <h4><svg class="ico"><use href="#i-bank"/></svg> App &ldquo;Calendario de Service&rdquo; &mdash; 3 pantallas</h4>
+  <div class="car">
+    <button class="nav prev" aria-label="Anterior">‹</button>
+    <div class="track">
+      <div class="slide"><img class="zoomable" src="design/piezas/cal/cal_1.jpg" alt="<b>1 · Próximo service</b>"><div class="cap"><b>1 · Próximo service</b></div></div>
+      <div class="slide"><img class="zoomable" src="design/piezas/cal/cal_2.jpg" alt="<b>2 · Calendario mensual</b>"><div class="cap"><b>2 · Calendario mensual</b></div></div>
+      <div class="slide"><img class="zoomable" src="design/piezas/cal/cal_3.jpg" alt="<b>3 · Confirmación</b>"><div class="cap"><b>3 · Confirmación</b></div></div>
+    </div>
+    <button class="nav next" aria-label="Siguiente">›</button>
+  </div>
+  <p class="src">Piezas diseñadas con el design system del proyecto (ver <b>design/DESIGN.md</b>). Reemplazan los mockups guía iniciales.</p>
 </section>
 
 <!-- ============ 8. PRESUPUESTO Y KPI ============ -->
@@ -690,6 +705,26 @@
     }
   });
 })();
+</script>
+<div id="comodal" class="modal" aria-hidden="true">
+  <div class="modal-card">
+    <button class="modal-x" aria-label="Cerrar">&times;</button>
+    <span class="kicker" style="color:var(--gold)">Idea de co-marketing · creatividad disruptiva</span>
+    <div class="co-lock"><svg width="54" height="22" viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle"><polygon points="20,45 90,45 100,30 200,30 210,45 280,45 280,75 210,75 200,90 100,90 90,75 20,75" fill="#C9A227"/><path d="M150 38 L138 64 L150 64 L146 84 L168 56 L154 56 Z" fill="#19A974"/></svg><b style="font-family:'Space Grotesk',sans-serif">EV Care</b><span class="x">&times;</span><img src="design/piezas/mcdonalds.svg" alt="McDonald's"><img src="design/piezas/mccafe.svg" alt="McCafé"></div>
+    <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.35rem;margin:4px 0 8px;">Mientras tu Spark EUV carga, vos cargás energía.</h3>
+    <p>El conductor de un eléctrico no pierde tiempo: <b>lo recupera</b>. Mientras el auto carga, la persona se toma un café, una pausa, una reunión. <b>El auto se carga. Vos también.</b></p>
+    <div class="co-stat">15 minutos &middot; 50% de batería &middot; 1 café McCafé</div>
+    <div class="cols">
+      <div><b>Para Chevrolet:</b> refuerza el ecosistema EV Care, potencia la percepción de servicio y posventa, y suma una ventaja <i>emocional</i> frente a quienes compiten solo por precio.</div>
+      <div><b>Para McDonald&rsquo;s:</b> más tráfico a los locales y ticket promedio, mayor permanencia y fidelización, y asociación con innovación y sustentabilidad.</div>
+    </div>
+    <p><b>EV Care Lounge (la evolución):</b> no se trata solo de instalar cargadores, sino de crear <b>lugares</b> donde cargar el auto y, a la vez, trabajar, tomar un café o esperar. El vehículo recupera energía; las personas, tiempo.</p>
+    <p class="src">Beneficio al usuario vía la app myChevrolet: café McCafé bonificado y beneficios acumulables. <b>Modelo escalable</b> a otras alianzas (Starbucks, YPF Full, Havanna), sin depender de una sola marca.</p>
+  </div>
+</div>
+<script>
+document.querySelectorAll(".car").forEach(function(c){var t=c.querySelector(".track");if(!t)return;var step=function(){return Math.min(t.clientWidth*0.85,420);};var nx=c.querySelector(".next"),pv=c.querySelector(".prev");if(nx)nx.onclick=function(){t.scrollBy({left:step(),behavior:"smooth"});};if(pv)pv.onclick=function(){t.scrollBy({left:-step(),behavior:"smooth"});};var d=false,sx,sl,moved=0;t.addEventListener("mousedown",function(e){d=true;sx=e.pageX;sl=t.scrollLeft;moved=0;t.style.cursor="grabbing";});window.addEventListener("mouseup",function(){d=false;t.style.cursor="grab";});t.addEventListener("mousemove",function(e){if(!d)return;e.preventDefault();moved=Math.abs(e.pageX-sx);t.scrollLeft=sl-(e.pageX-sx);});t.querySelectorAll("img").forEach(function(im){im.addEventListener("click",function(ev){if(moved>6){ev.stopPropagation();ev.preventDefault();}},true);});});
+(function(){var m=document.getElementById("comodal");if(!m)return;function close(){m.classList.remove("open");document.body.style.overflow="";}m.addEventListener("click",function(e){if(e.target===m)close();});var x=m.querySelector(".modal-x");if(x)x.onclick=close;document.addEventListener("keydown",function(e){if(e.key==="Escape")close();});})();
 </script>
 </body>
 </html>
