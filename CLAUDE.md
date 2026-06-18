@@ -6,7 +6,10 @@
 > empezar por acá para tener continuidad. Si algo cambia de forma estructural, se actualiza este archivo.
 > El **registro de avances día a día** (bitácora) vive en [`BRIEF_TP_Grupo31.md`](BRIEF_TP_Grupo31.md).
 >
-> _Última actualización: 17/06/2026._
+> _Última actualización: 18/06/2026._ El detalle día a día está en el `BRIEF` (bitácora 18/06: publicación
+> GitHub Pages, montajes recortados + lightbox, precios ARS/BNA, PDF explicativo de 2 hojas, carruseles de mockups
+> en §7, popup de co-marketing McDonald's con esquema vectorial, y **pase a "visual final"**: se quitaron los textos
+> de apoyo en amarillo, se renombraron los kickers a tono consultora y se eliminó el "Anexo equipo" interno del HTML).
 
 ---
 
@@ -183,19 +186,20 @@ como marca del proyecto en piezas y apps.
 - [x] Insertar capturas de benchmarking (auditoría) con su rótulo (capa + fuente) — criterio 2 de la rúbrica.
 
 ### Fase C — Diseño profesional + esqueletos de app y mockups *(lo que el usuario llama "cloud design")*
-- [ ] **Extraer** el sistema de diseño (§5) a un archivo de tokens reutilizable (p. ej. `design/tokens.css` o un
-      `design/DESIGN.md`) para alimentar las herramientas de diseño.
-- [ ] Diseñar los **esqueletos (skeletons) de aplicación**:
-  - [ ] **App / micrositio de Calendario de service** (agenda automática por cronograma de fábrica).
-  - [ ] **App "EV Care" / "ID Care"** (onboarding + agenda + "rating de uso" + reportes) — el corazón del ángulo.
-  - [ ] Resto de **mockups de piezas** (Reel "Mito vs Realidad", post posventa, search ad, carrusel) que hoy son
-        SVG placeholder en la sección 7 → reemplazar por piezas finales.
-- [ ] Aplicar tipografía/diseño "premium" al HTML manteniendo la paleta.
+- [x] **Extraer** el sistema de diseño (§5) a archivos reutilizables: `design/tokens.css` + `design/DESIGN.md`
+      (+ `design/PROMPTS_mockups.md` con los prompts para Claude design).
+- [x] Diseñar los **esqueletos (skeletons) de aplicación** (en Claude design) e integrarlos en carruseles §7:
+  - [x] **Calendario de service** — 3 pantallas integradas (`design/piezas/cal/`).
+  - [ ] **App "EV Care"** — 4 pantallas: **pendiente exportar PNG** a `design/piezas/app/` (hay placeholder en el carrusel).
+  - [x] **Mockups de piezas Social** (post, search ad, carrusel 1–6) integrados (`design/piezas/social/`).
+- [x] Aplicar tipografía/diseño "premium" al HTML (Space Grotesk + Inter, iconos de línea, lightbox, carruseles)
+      + **pase a "visual final"**: sin textos de apoyo amarillos, kickers en tono consultora, sin "Anexo equipo".
 
 ### Fase D — Cierre y exportación
-- [ ] Quitar la sección `#interno` del HTML para el PDF.
+- [x] Quitar la sección `#interno` ("Anexo equipo") del HTML — ya eliminada (18/06).
+- [x] Publicar HTML (GitHub Pages) + PDF explicativo con el link y QR en la portada (`PDF_explicativo.html`, 2 hojas A4).
 - [ ] Verificar extensión 12–25 págs. y coherencia integral (cadena Diagnóstico→Objetivos→Tácticas→Presupuesto→KPI).
-- [ ] Exportar PDF + publicar HTML + poner el link en la portada del PDF.
+- [ ] Exportar el PDF final de la presentación (tras integrar las 4 pantallas de la App EV Care).
 
 ---
 

@@ -142,6 +142,9 @@
   .co-lock{display:flex;align-items:center;gap:12px;margin:8px 0 14px;flex-wrap:wrap;}
   .co-lock img{height:30px;width:auto;}.co-lock .x{color:var(--gold);font-weight:800;font-size:1.2rem;}
   .co-stat{background:var(--ev-soft);color:#0a5e3f;font-family:"Space Grotesk",sans-serif;font-weight:700;border-radius:10px;padding:10px 14px;text-align:center;margin:12px 0;font-size:1.05rem;}
+  .co-schema{background:#fafaf7;border:1px solid var(--line);border-radius:12px;padding:14px 12px 6px;margin:12px 0;}
+  .co-schema svg{width:100%;height:auto;display:block;}
+  .co-schema .cap{text-align:center;font-family:"Space Grotesk",sans-serif;font-weight:700;color:#0a5e3f;font-size:.98rem;margin:8px 0 2px;}
   .cols{display:grid;grid-template-columns:1fr 1fr;gap:14px;font-size:.9rem;margin:10px 0;}
   @media(max-width:620px){.cols{grid-template-columns:1fr;}}
 </style>
@@ -183,7 +186,6 @@
     <a href="#contenidos">Contenidos</a>
     <a href="#presupuesto">Presupuesto</a>
     <a href="#kpi">KPI</a>
-    <a href="#interno">▸ Anexo equipo</a>
   </div>
 </nav>
 
@@ -225,7 +227,7 @@
 
 <!-- ============ IDENTIFICACIÓN INTERNA + ÍNDICE ============ -->
 <section id="resumen">
-  <span class="kicker">Identificación interna del documento</span>
+  <span class="kicker">Presentación de la propuesta</span>
   <h2><span class="sec-num">0</span> Objetivo general & índice</h2>
 
   <div class="card" style="background:#0E0E0E;color:#fff;border:none;">
@@ -256,7 +258,7 @@
 
 <!-- ============ 1. ANÁLISIS SITUACIONAL ============ -->
 <section id="analisis">
-  <span class="kicker">Paso 1 de la consigna</span>
+  <span class="kicker">Análisis situacional</span>
   <h2><span class="sec-num">1</span> Análisis Situacional</h2>
   <p class="lead">Auditoría digital de la marca asignada y su competencia directa · mercado y tendencias de uso · benchmarking.</p>
 
@@ -409,7 +411,7 @@
 
 <!-- ============ 4. ESTRATEGIA TÁCTICA ============ -->
 <section id="estrategia">
-  <span class="kicker">Paso 2 de la consigna</span>
+  <span class="kicker">Estrategia táctica</span>
   <h2><span class="sec-num">4</span> Estrategia Táctica</h2>
   <p class="lead">Definición de audiencias, canales y embudo de conversión.</p>
 
@@ -494,7 +496,7 @@
 
 <!-- ============ 6. PLAN OPERATIVO ============ -->
 <section id="operativo">
-  <span class="kicker">Paso 3 de la consigna</span>
+  <span class="kicker">Plan operativo</span>
   <h2><span class="sec-num">6</span> Plan Operativo - Calendario / Gantt</h2>
   <p class="lead">Ejecución a 12 semanas (3 meses). Incremental: cada mes construye sobre el anterior.</p>
   <div class="gantt">
@@ -523,7 +525,7 @@
 
 <!-- ============ 7. PLAN DE CONTENIDOS ============ -->
 <section id="contenidos">
-  <span class="kicker">Paso 4 de la consigna</span>
+  <span class="kicker">Plan de contenidos</span>
   <h2><span class="sec-num">7</span> Plan de Contenidos</h2>
   <p class="lead">Propuesta creativa de piezas por canal: Social Media · Influencers · Search.</p>
 
@@ -587,7 +589,7 @@
 
 <!-- ============ 8. PRESUPUESTO Y KPI ============ -->
 <section id="presupuesto">
-  <span class="kicker">Paso 5 de la consigna</span>
+  <span class="kicker">Presupuesto</span>
   <h2><span class="sec-num">8</span> Presupuesto (3 meses)</h2>
   <p class="lead">Inversión total: <b>ARS 36.000.000</b> (~USD 30k) para una campaña de consultoría a 90 días, distribuida según el peso de cada táctica en el embudo.</p>
   <div style="overflow-x:auto;">
@@ -606,7 +608,7 @@
 </section>
 
 <section id="kpi">
-  <span class="kicker">Paso 5 de la consigna</span>
+  <span class="kicker">KPI y medición</span>
   <h2><span class="sec-num">8.2</span> KPI alineados a objetivos</h2>
   <div style="overflow-x:auto;">
   <table>
@@ -629,44 +631,6 @@
 </section>
 
 <!-- ============ ANEXO INTERNO (NO ENTREGAR) ============ -->
-<section id="interno" class="internal">
-  <span class="kicker" style="color:#a07d0c;">Anexo de trabajo · NO forma parte de la entrega</span>
-  <h2 style="color:#7a5e09;"> Para la reunión del equipo: decisiones, puntos ciegos y tareas</h2>
-  <p>Esta sección es para vos y el grupo. Sacala antes de exportar el PDF final.</p>
-
-  <h3>A · Decisiones que necesito de ustedes (me destraban para afinar el TP)</h3>
-  <div class="q"><b>1. Presupuesto:</b> ¿trabajamos con los ARS 36M de referencia o el “cliente”/profe dio una cifra? Cambia toda la tabla de inversión.</div>
-  <div class="q"><b>2. Ciudades:</b> ¿confirmamos CABA + Córdoba + Rosario + Mendoza, o suman/sacan alguna (ej. La Plata, Mar del Plata)?</div>
-  <div class="q"><b>3. Formato final de entrega:</b> la consigna pide PDF. ¿Entregamos este informe interactivo como <b>PDF + link a la web</b>, o lo pasamos a presentación (PPTX) / video-pitch? Define cómo termino el material.</div>
-  <div class="q"><b>4. Reparto de roles:</b> ¿quién toma capturas de auditoría, quién diseña piezas en Canva, quién arma el video/pitch? Así sé qué placeholders completar.</div>
-  <div class="q"><b>5. Nombre del docente</b> para la carátula.</div>
-
-  <h3>B · Puntos ciegos a cubrir (riesgos si no los resolvemos)</h3>
-  <ul class="clean gold">
-    <li><b>Realidad del producto:</b> el Spark EUV figura con 167 unidades en el dato 2026, pero conviene chequear specs y precio oficial reales para no inventar. Si el dato no existe, declararlo como “supuesto de trabajo” (la consigna lo permite).</li>
-    <li><b>Datos exactos de competidores:</b> faltan unidades de JMEV, Jetour y BAIC - completar desde ACARA/ADEFA para que el benchmarking sume punto en la rúbrica.</li>
-    <li><b>Evidencia visual obligatoria:</b> sin las capturas de auditoría/benchmarking reales perdemos el criterio 2. Es lo más urgente a relevar.</li>
-    <li><b>Benchmarks numéricos:</b> las metas (900 leads, 60 ventas, CPL) son estimaciones razonables pero hay que poder defenderlas; conviene anclarlas a un % del mercado real.</li>
-    <li><b>Coherencia de extensión:</b> el PDF final debe tener 12–25 páginas. Este informe da material de sobra; cuidar no pasarnos al exportar.</li>
-    <li><b>Aplicación de IA:</b> la consigna dedica varias slides a IA en marketing. Asegurar que el chatbot y el contenido dinámico queden visibles como uso concreto de IA (suma en creatividad).</li>
-  </ul>
-
-  <h3>C · Checklist de la rúbrica (10 criterios) - estado</h3>
-  <table style="font-size:.85rem;">
-    <tr><th>Criterio</th><th>Estado en este borrador</th></tr>
-    <tr><td>1 · Carátula completa</td><td><svg class="ico ico-ev"><use href="#i-check"/></svg> (falta nombre del docente)</td></tr>
-    <tr><td>2 · Análisis situacional completo</td><td><svg class="ico ico-ev"><use href="#i-check"/></svg> texto · <svg class="ico ico-gold"><use href="#i-alert"/></svg> faltan capturas reales</td></tr>
-    <tr><td>3 · Coherencia objetivos–diagnóstico</td><td><svg class="ico ico-ev"><use href="#i-check"/></svg></td></tr>
-    <tr><td>4 · Estrategia táctica</td><td><svg class="ico ico-ev"><use href="#i-check"/></svg></td></tr>
-    <tr><td>5 · Plan operativo (Gantt)</td><td><svg class="ico ico-ev"><use href="#i-check"/></svg></td></tr>
-    <tr><td>6 · Plan de contenidos visual</td><td><svg class="ico ico-gold"><use href="#i-alert"/></svg> mockups guía → reemplazar por piezas Canva</td></tr>
-    <tr><td>7 · Presupuesto distribuido</td><td><svg class="ico ico-ev"><use href="#i-check"/></svg> (validar cifra)</td></tr>
-    <tr><td>8 · KPI alineados</td><td><svg class="ico ico-ev"><use href="#i-check"/></svg></td></tr>
-    <tr><td>9 · Consistencia integral</td><td><svg class="ico ico-ev"><use href="#i-check"/></svg></td></tr>
-    <tr><td>10 · Profesionalismo y creatividad</td><td><svg class="ico ico-ev"><use href="#i-check"/></svg> idea “EV Care” diferencial</td></tr>
-  </table>
-</section>
-
 <div class="footer">
   TP Integrador 2026 · “Consultoría de Marketing Digital” · Grupo 31 · Chevrolet Spark EUV<br>
   Universidad Tecnológica Nacional - Marketing Digital Táctico y Operativo · Entrega 18/06/2026<br>
@@ -712,7 +676,44 @@
     <div class="co-lock"><svg width="54" height="22" viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle"><polygon points="20,45 90,45 100,30 200,30 210,45 280,45 280,75 210,75 200,90 100,90 90,75 20,75" fill="#C9A227"/><path d="M150 38 L138 64 L150 64 L146 84 L168 56 L154 56 Z" fill="#19A974"/></svg><b style="font-family:'Space Grotesk',sans-serif">EV Care</b><span class="x">&times;</span><img src="design/piezas/mcdonalds.svg" alt="McDonald's"><img src="design/piezas/mccafe.svg" alt="McCafé"></div>
     <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.35rem;margin:4px 0 8px;">Mientras tu Spark EUV carga, vos cargás energía.</h3>
     <p>El conductor de un eléctrico no pierde tiempo: <b>lo recupera</b>. Mientras el auto carga, la persona se toma un café, una pausa, una reunión. <b>El auto se carga. Vos también.</b></p>
-    <div class="co-stat">15 minutos &middot; 50% de batería &middot; 1 café McCafé</div>
+    <div class="co-schema">
+      <svg viewBox="0 0 640 165" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="El Spark EUV carga 50% de bateria en 15 minutos mientras la persona toma un cafe McCafe">
+        <line x1="182" y1="80" x2="280" y2="80" stroke="#C9A227" stroke-width="2.5" stroke-dasharray="6 6" stroke-linecap="round"/>
+        <polygon points="282,80 270,73 270,87" fill="#C9A227"/>
+        <line x1="356" y1="80" x2="492" y2="80" stroke="#C9A227" stroke-width="2.5" stroke-dasharray="6 6" stroke-linecap="round"/>
+        <polygon points="494,80 482,73 482,87" fill="#C9A227"/>
+        <g transform="translate(199,48)">
+          <rect x="-32" y="0" width="64" height="22" rx="11" fill="#0E0E0E"/>
+          <text x="0" y="15.5" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="12" font-weight="700" fill="#E7CE7A">15 min</text>
+        </g>
+        <g transform="translate(40,40)">
+          <path d="M4 56 L16 30 Q20 22 30 22 L84 22 Q95 22 101 31 L116 56" fill="none" stroke="#0E0E0E" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+          <rect x="2" y="52" width="116" height="20" rx="10" fill="#0E0E0E"/>
+          <rect x="24" y="31" width="28" height="19" rx="3" fill="#D8F3E7"/>
+          <rect x="60" y="31" width="32" height="19" rx="3" fill="#D8F3E7"/>
+          <circle cx="34" cy="74" r="10" fill="#fff" stroke="#0E0E0E" stroke-width="3.5"/>
+          <circle cx="88" cy="74" r="10" fill="#fff" stroke="#0E0E0E" stroke-width="3.5"/>
+          <circle cx="116" cy="34" r="15" fill="#19A974"/>
+          <path d="M118 25 L109 38 L117 38 L114 47 L124 34 L117 34 Z" fill="#fff"/>
+        </g>
+        <text x="98" y="150" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" font-weight="600" fill="#0E0E0E">Enchufás el Spark</text>
+        <g transform="translate(292,38)">
+          <path d="M12 4 q7 7 0 14 M28 4 q7 7 0 14" fill="none" stroke="#C9A227" stroke-width="2.5" stroke-linecap="round" opacity=".75"/>
+          <rect x="2" y="22" width="42" height="9" rx="3" fill="#C9A227"/>
+          <path d="M6 31 L40 31 L36 70 Q35 76 29 76 L17 76 Q11 76 10 70 Z" fill="#fff" stroke="#0E0E0E" stroke-width="3.5" stroke-linejoin="round"/>
+          <path d="M42 40 q13 0 13 11 q0 11 -14 11" fill="none" stroke="#0E0E0E" stroke-width="3.5"/>
+        </g>
+        <text x="316" y="150" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" font-weight="600" fill="#0E0E0E">Café McCafé</text>
+        <g transform="translate(498,44)">
+          <rect x="2" y="12" width="92" height="44" rx="9" fill="none" stroke="#0E0E0E" stroke-width="3.5"/>
+          <rect x="96" y="26" width="9" height="16" rx="3" fill="#0E0E0E"/>
+          <rect x="9" y="19" width="39" height="30" rx="4" fill="#19A974"/>
+          <text x="71" y="41" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="16" font-weight="800" fill="#0E0E0E">50%</text>
+        </g>
+        <text x="551" y="150" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" font-weight="600" fill="#0E0E0E">Batería al 50%</text>
+      </svg>
+      <div class="cap">15 minutos &middot; 50% de batería &middot; 1 café McCafé</div>
+    </div>
     <div class="cols">
       <div><b>Para Chevrolet:</b> refuerza el ecosistema EV Care, potencia la percepción de servicio y posventa, y suma una ventaja <i>emocional</i> frente a quienes compiten solo por precio.</div>
       <div><b>Para McDonald&rsquo;s:</b> más tráfico a los locales y ticket promedio, mayor permanencia y fidelización, y asociación con innovación y sustentabilidad.</div>
