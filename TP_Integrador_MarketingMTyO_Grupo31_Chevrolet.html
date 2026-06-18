@@ -151,6 +151,23 @@
   .flip .fcap{font-size:.8rem;color:var(--mute);text-align:center;line-height:1.35;}
   .flip .fcap b{color:var(--ink);}
   @media print{.flip .fnav{display:none;}.flip .fbadge{background:#0E0E0E;}}
+  /* galería de evidencias §1.6 (comparativas de a dos, deslizables) */
+  .evgal{position:relative;margin:14px 0 8px;}
+  .evgal .egtrack{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:4px 2px 16px;cursor:grab;-webkit-overflow-scrolling:touch;}
+  .evgal .egtrack::-webkit-scrollbar{height:8px;}.evgal .egtrack::-webkit-scrollbar-thumb{background:#cfcfcf;border-radius:8px;}
+  .egcard{flex:0 0 calc(50% - 9px);scroll-snap-align:start;margin:0;background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.07);display:flex;flex-direction:column;}
+  .egcard .eghead{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:11px 14px 9px;}
+  .egcard .eghead b{font-family:"Space Grotesk",sans-serif;font-size:1rem;}
+  .egcard .egtag{font-size:.62rem;letter-spacing:.4px;text-transform:uppercase;background:#f1efe6;color:#7a5e09;padding:3px 9px;border-radius:30px;font-weight:700;white-space:nowrap;}
+  .egcard .egtag-ev{background:var(--ev-soft);color:#0a5e3f;}
+  .egcard .egimg{width:100%;height:235px;object-fit:cover;object-position:center top;cursor:zoom-in;display:block;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#faf9f6;}
+  .egcard figcaption{font-size:.8rem;color:var(--mute);padding:10px 14px;line-height:1.4;}
+  .egcard figcaption b{color:var(--ink);}
+  .evgal .egnav{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:none;cursor:pointer;background:var(--ink);color:#fff;font-size:21px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.28);z-index:5;opacity:.95;}
+  .evgal .egnav:hover{background:var(--gold);color:#000;}
+  .evgal .egprev{left:-10px;}.evgal .egnext{right:-10px;}
+  @media(max-width:760px){.egcard{flex:0 0 86%;}.evgal .egnav{display:none;}}
+  @media print{.evgal .egtrack{overflow:visible;flex-wrap:wrap;}.evgal .egnav{display:none;}.egcard .egimg{height:auto;object-fit:contain;}.egcard{break-inside:avoid;}}
   /* lightbox: navegación de galería (piezas con más de una pantalla) */
   #lb .lbnav{position:fixed;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;border:none;cursor:pointer;background:rgba(255,255,255,.12);color:#fff;font-size:26px;display:none;align-items:center;justify-content:center;z-index:10000;}
   #lb.gallery .lbnav{display:flex;}
@@ -362,26 +379,45 @@
   <div class="note"><b>El cruce de las dos capas (nuestra oportunidad):</b> Chevrolet es <b>marca fuerte con modelo casi invisible</b> en el canal EV (224K de comunidad, pero poca voz del Spark EUV), mientras BYD es <b>modelo fuerte con marca-comunidad incipiente</b>. Nuestra jugada conecta las dos: usamos el armazón de marca (confianza + posventa) para darle visibilidad y conversión al modelo. Además, <b>todos los rivales comparten la misma debilidad -la posventa- y Chevrolet es el único que la ataca con credibilidad.</b></div>
 
   <h3>1.6 · Evidencia visual del benchmarking (auditoría digital)</h3>
-  <p class="lead">Capturas reales de cada marca consolidadas por categoría para comparar de un vistazo. <b>Chevrolet</b> resaltado en dorado. Relevamiento jun 2026.</p>
-
-  <h4>Comunidad en redes sociales <span class="pill">Capa MARCA</span></h4>
-  <img src="Evidencias/_comparativas/comparativa_instagram.png" alt="Benchmarking Instagram de las 5 marcas" style="width:100%;border:1px solid var(--line);border-radius:10px;margin:8px 0;display:block;break-inside:avoid;cursor:zoom-in;">
-  <img src="Evidencias/_comparativas/comparativa_tiktok.png" alt="Benchmarking TikTok de las 5 marcas" style="width:100%;border:1px solid var(--line);border-radius:10px;margin:8px 0;display:block;break-inside:avoid;cursor:zoom-in;">
-  <img src="Evidencias/_comparativas/comparativa_youtube.png" alt="Benchmarking YouTube de las 5 marcas" style="width:100%;border:1px solid var(--line);border-radius:10px;margin:8px 0;display:block;break-inside:avoid;cursor:zoom-in;">
-  <p class="src">Fuente: perfiles oficiales de Instagram, TikTok y YouTube de cada marca (Argentina), jun 2026. Lectura: Chevrolet lidera en TikTok y YouTube; BAIC sorprende y supera a Chevrolet en Instagram (285 K vs 225 K).</p>
-
-  <h4>Tráfico del sitio corporativo <span class="pill">Capa MARCA</span></h4>
-  <img src="Evidencias/_comparativas/comparativa_similarweb.png" alt="Benchmarking de tráfico web (SimilarWeb)" style="width:100%;border:1px solid var(--line);border-radius:10px;margin:8px 0;display:block;break-inside:avoid;cursor:zoom-in;">
-  <p class="src">Fuente: SimilarWeb (may 2026). Chevrolet domina el tráfico argentino con 745,8 K visitas/mes. *BYD se mide sobre el dominio global byd.com (no tiene .com.ar propio), por eso su cifra es global y no comparable 1:1.</p>
-
-  <h4>Posventa: reseñas de concesionarios</h4>
-  <img src="Evidencias/_comparativas/comparativa_maps_posventa.png" alt="Benchmarking de reseñas de concesionarios (Google Maps)" style="width:100%;border:1px solid var(--line);border-radius:10px;margin:8px 0;display:block;break-inside:avoid;cursor:zoom-in;">
-  <div class="note">Aquí se define nuestra ventaja: las fichas de Google Maps muestran que las <b>reseñas de posventa</b> (estrellas y volumen) son el verdadero campo de batalla. En la ficha de Car One (Chevrolet) aparecen incluso etiquetas críticas como <b>"estafadores" (23)</b> y <b>"desastre" (22)</b> entre las reseñas - evidencia directa de que la atención posventa es el problema #1 a resolver, y la base del ángulo "EV Care".</div>
-  <p class="src">Fuente: Google Maps - concesionarios oficiales de cada marca, jun 2026.</p>
-
-  <h4>Sitios oficiales <span class="pill">auditoría</span></h4>
-  <img src="Evidencias/_comparativas/comparativa_web.png" alt="Webs oficiales de las 5 marcas" style="width:100%;border:1px solid var(--line);border-radius:10px;margin:8px 0;display:block;break-inside:avoid;cursor:zoom-in;">
-  <p class="src">Fuente: sitios oficiales de cada marca, jun 2026. El set completo de evidencias (5 marcas × 8 categorías) está disponible en la carpeta <b>/Evidencias</b> y en el anexo del enlace funcional.</p>
+  <p class="lead">Capturas reales de las 5 marcas consolidadas por categoría, <b>Chevrolet</b> resaltado en dorado. Deslizá para recorrerlas de a dos; <b>clic</b> en cualquiera para ampliarla y pasarlas en grande. Relevamiento jun 2026.</p>
+  <div class="evgal">
+    <button class="egnav egprev" aria-label="Comparativas anteriores">‹</button>
+    <div class="egtrack">
+      <figure class="egcard">
+        <div class="eghead"><b>Instagram</b><span class="egtag">Comunidad · MARCA</span></div>
+        <img class="zoomable egimg" data-gallery="evid" src="Evidencias/_comparativas/comparativa_instagram.png" alt="Benchmarking de Instagram de las 5 marcas">
+        <figcaption><b>BAIC sorprende:</b> 285 K seguidores, supera a Chevrolet (225 K).</figcaption>
+      </figure>
+      <figure class="egcard">
+        <div class="eghead"><b>TikTok</b><span class="egtag">Comunidad · MARCA</span></div>
+        <img class="zoomable egimg" data-gallery="evid" src="Evidencias/_comparativas/comparativa_tiktok.png" alt="Benchmarking de TikTok de las 5 marcas">
+        <figcaption><b>Chevrolet lidera:</b> 210,8 K seguidores y 1,5 M de likes.</figcaption>
+      </figure>
+      <figure class="egcard">
+        <div class="eghead"><b>YouTube</b><span class="egtag">Comunidad · MARCA</span></div>
+        <img class="zoomable egimg" data-gallery="evid" src="Evidencias/_comparativas/comparativa_youtube.png" alt="Benchmarking de YouTube de las 5 marcas">
+        <figcaption><b>Chevrolet domina:</b> 113 K suscriptores · 256 videos.</figcaption>
+      </figure>
+      <figure class="egcard">
+        <div class="eghead"><b>Tráfico web</b><span class="egtag">SimilarWeb · MARCA</span></div>
+        <img class="zoomable egimg" data-gallery="evid" src="Evidencias/_comparativas/comparativa_similarweb.png" alt="Benchmarking de tráfico web (SimilarWeb)">
+        <figcaption><b>745,8 K visitas/mes</b> en chevrolet.com.ar, tráfico 100% argentino.</figcaption>
+      </figure>
+      <figure class="egcard">
+        <div class="eghead"><b>Posventa</b><span class="egtag egtag-ev">el diferencial</span></div>
+        <img class="zoomable egimg" data-gallery="evid" src="Evidencias/_comparativas/comparativa_maps_posventa.png" alt="Benchmarking de reseñas de concesionarios en Google Maps">
+        <figcaption><b>El campo de batalla:</b> reseñas y rating de service en Google Maps.</figcaption>
+      </figure>
+      <figure class="egcard">
+        <div class="eghead"><b>Sitios oficiales</b><span class="egtag">Auditoría</span></div>
+        <img class="zoomable egimg" data-gallery="evid" src="Evidencias/_comparativas/comparativa_web.png" alt="Webs oficiales de las 5 marcas">
+        <figcaption>Webs oficiales de las 5 marcas, lado a lado.</figcaption>
+      </figure>
+    </div>
+    <button class="egnav egnext" aria-label="Comparativas siguientes">›</button>
+  </div>
+  <div class="note">Aquí se define nuestra ventaja: las fichas de Google Maps muestran que las <b>reseñas de posventa</b> (estrellas y volumen) son el verdadero campo de batalla. En la ficha de Car One (Chevrolet) aparecen incluso etiquetas críticas como <b>"estafadores" (23)</b> y <b>"desastre" (22)</b> - evidencia directa de que la atención posventa es el problema #1 a resolver, y la base del ángulo "EV Care".</div>
+  <p class="src">Fuentes: perfiles oficiales (IG/TikTok/YouTube), SimilarWeb (may 2026), Google Maps y sitios de cada marca, jun 2026. *BYD se mide sobre su dominio global byd.com (no tiene .com.ar). El set completo (5 marcas × 8 categorías) está en la carpeta <b>/Evidencias</b>.</p>
 </section>
 
 <!-- ============ 2. FODA ============ -->
@@ -717,6 +753,19 @@
     if(nx) nx.addEventListener('click',function(e){e.stopPropagation();show(idx+1);});
     if(pv) pv.addEventListener('click',function(e){e.stopPropagation();show(idx-1);});
   });
+  /* galería de evidencias §1.6: deslizar de a dos + arrastre */
+  [].forEach.call(document.querySelectorAll('.evgal'), function(g){
+    var t=g.querySelector('.egtrack');
+    var pageStep=function(){ var c=g.querySelector('.egcard'); return (c?c.getBoundingClientRect().width+18:t.clientWidth*0.45)*2; };
+    var nx=g.querySelector('.egnext'), pv=g.querySelector('.egprev');
+    if(nx) nx.addEventListener('click',function(){ t.scrollBy({left:pageStep(),behavior:'smooth'}); });
+    if(pv) pv.addEventListener('click',function(){ t.scrollBy({left:-pageStep(),behavior:'smooth'}); });
+    var d=false,sx,sl,mv=0;
+    t.addEventListener('mousedown',function(e){d=true;sx=e.pageX;sl=t.scrollLeft;mv=0;t.style.cursor='grabbing';});
+    window.addEventListener('mouseup',function(){d=false;t.style.cursor='grab';});
+    t.addEventListener('mousemove',function(e){if(!d)return;e.preventDefault();mv=Math.abs(e.pageX-sx);t.scrollLeft=sl-(e.pageX-sx);});
+    t.querySelectorAll('img').forEach(function(im){im.addEventListener('click',function(ev){if(mv>6){ev.stopPropagation();ev.preventDefault();}},true);});
+  });
   /* lightbox con galería (piezas multipantalla se recorren en el zoom) */
   var lb=document.getElementById('lb'), lbImg=lb.querySelector('img'),
       lbCount=lb.querySelector('.lbcount'), lbNext=lb.querySelector('.lbnext'), lbPrev=lb.querySelector('.lbprev');
@@ -740,6 +789,12 @@
     if(src.indexOf('_comparativas/') > -1 || i.classList.contains('zoomable')){
       i.classList.add('evid-zoom');
       i.addEventListener('click', function(){
+        var gname = i.getAttribute('data-gallery');
+        if(gname){
+          var mem = [].slice.call(document.querySelectorAll('img[data-gallery="'+gname+'"]'));
+          open(mem.map(function(m){return m.getAttribute('src');}), mem.indexOf(i));
+          return;
+        }
         var f = i.closest ? i.closest('.flip') : null;
         if(f && f._imgs && f._imgs.length>1){ open(f._imgs, f._idx); }
         else { open([i.getAttribute('src')], 0); }
