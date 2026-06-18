@@ -116,6 +116,13 @@
   .q b{color:var(--ink);}
   @media(max-width:760px){.g2,.g3,.g4,.cover .meta,.foda{grid-template-columns:1fr;}.cover h1{font-size:2rem;}section{padding:24px;}}
   @media print{nav{display:none;}body{background:#fff;}section{box-shadow:none;border:none;page-break-inside:avoid;margin:0;border-radius:0;}}
+  /* lightbox de evidencia (ampliar in-page) */
+  #lb{position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(14,14,14,.94);display:none;z-index:9999;cursor:zoom-out;}
+  #lb.open{display:flex;align-items:center;justify-content:center;padding:3vmin;}
+  #lb img{max-width:96vw;max-height:90vh;border-radius:8px;box-shadow:0 24px 70px rgba(0,0,0,.55);}
+  #lb .lbx{position:fixed;top:16px;right:24px;color:#E7CE7A;font:600 13px "Inter",sans-serif;letter-spacing:.5px;}
+  img.evid-zoom{cursor:zoom-in;}
+  @media print{#lb{display:none!important;}}
 </style>
 </head>
 <body>
@@ -311,22 +318,22 @@
   <p class="lead">Capturas reales de cada marca consolidadas por categoría para comparar de un vistazo. <b>Chevrolet</b> resaltado en dorado. Relevamiento jun 2026. <span class="pill gold">Clic en una comparativa para ampliarla</span></p>
 
   <h4>Comunidad en redes sociales <span class="pill">Capa MARCA</span></h4>
-  <a href="Evidencias/_comparativas/comparativa_instagram.png" target="_blank" rel="noopener" title="Abrir la comparativa en grande (pestaña nueva)" style="display:block"><img src="Evidencias/_comparativas/comparativa_instagram.png" alt="Benchmarking Instagram de las 5 marcas" style="width:100%;border:1px solid var(--line);border-radius:10px;margin:8px 0;display:block;break-inside:avoid;cursor:zoom-in;"></a>
-  <a href="Evidencias/_comparativas/comparativa_tiktok.png" target="_blank" rel="noopener" title="Abrir la comparativa en grande (pestaña nueva)" style="display:block"><img src="Evidencias/_comparativas/comparativa_tiktok.png" alt="Benchmarking TikTok de las 5 marcas" style="width:100%;border:1px solid var(--line);border-radius:10px;margin:8px 0;display:block;break-inside:avoid;cursor:zoom-in;"></a>
-  <a href="Evidencias/_comparativas/comparativa_youtube.png" target="_blank" rel="noopener" title="Abrir la comparativa en grande (pestaña nueva)" style="display:block"><img src="Evidencias/_comparativas/comparativa_youtube.png" alt="Benchmarking YouTube de las 5 marcas" style="width:100%;border:1px solid var(--line);border-radius:10px;margin:8px 0;display:block;break-inside:avoid;cursor:zoom-in;"></a>
+  <img src="Evidencias/_comparativas/comparativa_instagram.png" alt="Benchmarking Instagram de las 5 marcas" style="width:100%;border:1px solid var(--line);border-radius:10px;margin:8px 0;display:block;break-inside:avoid;cursor:zoom-in;">
+  <img src="Evidencias/_comparativas/comparativa_tiktok.png" alt="Benchmarking TikTok de las 5 marcas" style="width:100%;border:1px solid var(--line);border-radius:10px;margin:8px 0;display:block;break-inside:avoid;cursor:zoom-in;">
+  <img src="Evidencias/_comparativas/comparativa_youtube.png" alt="Benchmarking YouTube de las 5 marcas" style="width:100%;border:1px solid var(--line);border-radius:10px;margin:8px 0;display:block;break-inside:avoid;cursor:zoom-in;">
   <p class="src">Fuente: perfiles oficiales de Instagram, TikTok y YouTube de cada marca (Argentina), jun 2026. Lectura: Chevrolet lidera en TikTok y YouTube; BAIC sorprende y supera a Chevrolet en Instagram (285 K vs 225 K).</p>
 
   <h4>Tráfico del sitio corporativo <span class="pill">Capa MARCA</span></h4>
-  <a href="Evidencias/_comparativas/comparativa_similarweb.png" target="_blank" rel="noopener" title="Abrir la comparativa en grande (pestaña nueva)" style="display:block"><img src="Evidencias/_comparativas/comparativa_similarweb.png" alt="Benchmarking de tráfico web (SimilarWeb)" style="width:100%;border:1px solid var(--line);border-radius:10px;margin:8px 0;display:block;break-inside:avoid;cursor:zoom-in;"></a>
+  <img src="Evidencias/_comparativas/comparativa_similarweb.png" alt="Benchmarking de tráfico web (SimilarWeb)" style="width:100%;border:1px solid var(--line);border-radius:10px;margin:8px 0;display:block;break-inside:avoid;cursor:zoom-in;">
   <p class="src">Fuente: SimilarWeb (may 2026). Chevrolet domina el tráfico argentino con 745,8 K visitas/mes. *BYD se mide sobre el dominio global byd.com (no tiene .com.ar propio), por eso su cifra es global y no comparable 1:1.</p>
 
   <h4>Posventa: reseñas de concesionarios <span class="pill gold">el diferencial del TP</span></h4>
-  <a href="Evidencias/_comparativas/comparativa_maps_posventa.png" target="_blank" rel="noopener" title="Abrir la comparativa en grande (pestaña nueva)" style="display:block"><img src="Evidencias/_comparativas/comparativa_maps_posventa.png" alt="Benchmarking de reseñas de concesionarios (Google Maps)" style="width:100%;border:1px solid var(--line);border-radius:10px;margin:8px 0;display:block;break-inside:avoid;cursor:zoom-in;"></a>
+  <img src="Evidencias/_comparativas/comparativa_maps_posventa.png" alt="Benchmarking de reseñas de concesionarios (Google Maps)" style="width:100%;border:1px solid var(--line);border-radius:10px;margin:8px 0;display:block;break-inside:avoid;cursor:zoom-in;">
   <div class="note">Aquí se define nuestra ventaja: las fichas de Google Maps muestran que las <b>reseñas de posventa</b> (estrellas y volumen) son el verdadero campo de batalla. En la ficha de Car One (Chevrolet) aparecen incluso etiquetas críticas como <b>"estafadores" (23)</b> y <b>"desastre" (22)</b> entre las reseñas — evidencia directa de que la atención posventa es el problema #1 a resolver, y la base del ángulo "EV Care".</div>
   <p class="src">Fuente: Google Maps — concesionarios oficiales de cada marca, jun 2026.</p>
 
   <h4>Sitios oficiales <span class="pill">auditoría</span></h4>
-  <a href="Evidencias/_comparativas/comparativa_web.png" target="_blank" rel="noopener" title="Abrir la comparativa en grande (pestaña nueva)" style="display:block"><img src="Evidencias/_comparativas/comparativa_web.png" alt="Webs oficiales de las 5 marcas" style="width:100%;border:1px solid var(--line);border-radius:10px;margin:8px 0;display:block;break-inside:avoid;cursor:zoom-in;"></a>
+  <img src="Evidencias/_comparativas/comparativa_web.png" alt="Webs oficiales de las 5 marcas" style="width:100%;border:1px solid var(--line);border-radius:10px;margin:8px 0;display:block;break-inside:avoid;cursor:zoom-in;">
   <p class="src">Fuente: sitios oficiales de cada marca, jun 2026. El set completo de evidencias (5 marcas × 8 categorías) está disponible en la carpeta <b>/Evidencias</b> y en el anexo del enlace funcional.</p>
 </section>
 
@@ -660,6 +667,22 @@
   els.forEach(function(el){ io.observe(el); });
   setTimeout(function(){ els.forEach(function(el){ el.classList.add('in'); }); }, 1600);
   window.addEventListener('hashchange', function(){ var t=document.querySelector(location.hash); if(t) t.classList.add('in'); });
+})();
+</script>
+<div id="lb" aria-hidden="true"><span class="lbx">Cerrar &middot; Esc</span><img alt="Comparativa ampliada"></div>
+<script>
+(function(){
+  var lb=document.getElementById('lb'), lbImg=lb.querySelector('img');
+  function close(){ lb.classList.remove('open'); document.body.style.overflow=''; }
+  lb.addEventListener('click', close);
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
+  [].forEach.call(document.querySelectorAll('img'), function(i){
+    var src = i.getAttribute('src') || '';
+    if(src.indexOf('_comparativas/') > -1){
+      i.classList.add('evid-zoom');
+      i.addEventListener('click', function(){ lbImg.src=src; lb.classList.add('open'); document.body.style.overflow='hidden'; });
+    }
+  });
 })();
 </script>
 </body>
