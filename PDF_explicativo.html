@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>TP Integrador 2026 · Grupo 31 · Chevrolet Spark EUV — Informe explicativo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold:#C9A227; --gold-soft:#E7CE7A; --ink:#0E0E0E; --ink-soft:#2b2b2b; --mute:#6b6b6b;
+    --ev:#19A974; --ev-soft:#D8F3E7; --paper:#fff; --bg:#e9e9e7; --line:#e4e4e4;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Inter","Segoe UI",system-ui,sans-serif;line-height:1.5;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  h1,h2,h3,h4,.num,.kick{font-family:"Space Grotesk","Segoe UI",sans-serif;}
+  .page{width:210mm;min-height:297mm;background:var(--paper);margin:18px auto;padding:15mm 15mm 12mm;
+    box-sizing:border-box;position:relative;box-shadow:0 6px 26px rgba(0,0,0,.16);page-break-after:always;overflow:hidden;}
+  .page:last-child{page-break-after:auto;}
+  .topbar{display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--gold);padding-bottom:10px;margin-bottom:14px;}
+  .topbar img{height:34px;}
+  .topbar .meta{font-size:10.5px;color:var(--mute);text-align:right;letter-spacing:.3px;}
+  .kick{color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:1.6px;font-size:11px;}
+  /* HERO */
+  .hero{position:relative;border-radius:14px;overflow:hidden;height:86mm;margin:4px 0 16px;}
+  .hero img{width:100%;height:100%;object-fit:cover;display:block;}
+  .hero .ov{position:absolute;inset:0;background:linear-gradient(100deg,rgba(14,14,14,.92) 0%,rgba(14,14,14,.55) 42%,rgba(14,14,14,0) 72%);}
+  .hero .txt{position:absolute;left:26px;bottom:24px;right:26px;color:#fff;}
+  .hero h1{font-size:30px;line-height:1.08;margin:8px 0 6px;}
+  .hero h1 b{color:var(--gold);}
+  .hero .sub{font-size:13px;color:#eee;max-width:62%;}
+  .bowtie{display:inline-block;vertical-align:middle;}
+  /* data grid */
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:6px 0 14px;}
+  .cell{background:#fafafa;border:1px solid var(--line);border-radius:9px;padding:9px 13px;}
+  .cell b{display:block;color:var(--gold);font-size:10px;text-transform:uppercase;letter-spacing:.6px;margin-bottom:2px;}
+  .cell span{font-size:13.5px;font-weight:600;}
+  /* link + QR block */
+  .linkbox{display:flex;align-items:center;gap:18px;border:1.5px solid var(--gold);background:#fffdf5;border-radius:13px;padding:14px 18px;margin-top:8px;}
+  .linkbox .qr{width:96px;height:96px;flex:0 0 auto;border-radius:8px;}
+  .linkbox .l b{font-size:14px;}
+  .linkbox a{color:var(--ev);font-weight:700;text-decoration:underline;word-break:break-all;}
+  .linkbox .small{font-size:11px;color:var(--mute);margin-top:3px;}
+  /* page 2 */
+  h2.sec{font-size:21px;margin:0 0 4px;display:flex;align-items:center;gap:10px;}
+  .gold-num{background:var(--gold);color:#000;font-weight:800;width:30px;height:30px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:15px;}
+  .lead{color:var(--ink-soft);font-size:13px;margin:6px 0 14px;}
+  .idea{background:var(--ink);color:#fff;border-radius:13px;padding:16px 18px;margin:10px 0 16px;}
+  .idea h3{color:var(--gold);margin:0 0 6px;font-size:15px;}
+  .idea p{margin:0;font-size:13px;}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0;}
+  .kpi{background:#fafafa;border:1px solid var(--line);border-radius:10px;padding:11px;text-align:center;}
+  .kpi .big{font-size:20px;font-weight:800;color:var(--gold);line-height:1;}
+  .kpi .lab{font-size:9.5px;color:var(--mute);margin-top:4px;line-height:1.25;}
+  .steps{display:grid;gap:7px;margin:8px 0 14px;}
+  .step{display:flex;gap:11px;align-items:flex-start;background:#fafafa;border:1px solid var(--line);border-radius:9px;padding:9px 12px;font-size:12.5px;}
+  .step .n{background:var(--ink);color:var(--gold);font-weight:800;width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex:0 0 auto;font-size:12px;}
+  .row2{display:grid;grid-template-columns:1.3fr 1fr;gap:12px;align-items:stretch;}
+  .panel{border:1px solid var(--line);border-radius:10px;padding:12px 14px;}
+  .panel h4{margin:0 0 7px;font-size:13px;}
+  .panel ul{margin:0;padding-left:16px;font-size:12px;} .panel li{margin:3px 0;}
+  .totbox{background:var(--ev-soft);border:1px solid #bfe6d5;border-radius:10px;padding:12px 14px;text-align:center;}
+  .totbox .big{font-size:22px;font-weight:800;color:#0a5e3f;font-family:"Space Grotesk",sans-serif;}
+  .totbox .lab{font-size:11px;color:#0a5e3f;}
+  .foot{position:absolute;left:15mm;right:15mm;bottom:8mm;border-top:1px solid var(--line);padding-top:8px;font-size:10.5px;color:var(--mute);display:flex;justify-content:space-between;}
+  .foot a{color:var(--ev);font-weight:600;}
+  @media print{ body{background:#fff;} .page{margin:0;box-shadow:none;} @page{size:A4;margin:0;} }
+</style>
+</head>
+<body>
+
+<!-- ===================== PÁGINA 1 · CARÁTULA ===================== -->
+<section class="page">
+  <div class="topbar">
+    <img src="design/piezas/utn_logo.png" alt="Universidad Tecnológica Nacional">
+    <div class="meta">Tecnicatura en Comercio Electrónico y Marketing Digital<br>Marketing Digital Táctico y Operativo · 2026</div>
+  </div>
+
+  <div class="hero">
+    <img src="design/piezas/spark_hero.jpg" alt="Chevrolet Spark EUV">
+    <div class="ov"></div>
+    <div class="txt">
+      <span class="kick">Trabajo Práctico Integrador · Consultoría de Marketing Digital</span>
+      <h1>
+        <svg class="bowtie" width="62" height="25" viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="20,45 90,45 100,30 200,30 210,45 280,45 280,75 210,75 200,90 100,90 90,75 20,75" fill="#C9A227" stroke="#fff" stroke-width="3"/>
+          <path d="M150 38 L138 64 L150 64 L146 84 L168 56 L154 56 Z" fill="#19A974" stroke="#0E0E0E" stroke-width="2"/>
+        </svg><br>
+        Chevrolet <b>Spark EUV</b> · EV Care
+      </h1>
+      <div class="sub">Propuesta de asesoramiento de marketing digital a 3 meses. Enfoque: <b>fidelización y servicio de posventa</b>.</div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="cell"><b>Grupo</b><span>31</span></div>
+    <div class="cell"><b>Marca / Modelo asignado</b><span>Chevrolet — Spark EUV (100% eléctrico)</span></div>
+    <div class="cell"><b>Autor</b><span>Ariel Lescano</span></div>
+    <div class="cell"><b>Docente</b><span>Mario Olivetto</span></div>
+    <div class="cell"><b>Institución</b><span>Universidad Tecnológica Nacional</span></div>
+    <div class="cell"><b>Fecha de entrega</b><span>18 / 06 / 2026</span></div>
+  </div>
+
+  <div class="cell" style="background:#0E0E0E;color:#fff;border:none;">
+    <b style="color:var(--gold)">Objetivo general de la propuesta</b>
+    <span style="font-weight:500;font-size:12.5px;line-height:1.45;">Posicionar al Spark EUV como <b style="color:var(--gold-soft);text-transform:none;">el eléctrico con la red de respaldo y posventa más confiable de Argentina</b>, convirtiendo la mayor barrera del mercado (la desconfianza en el servicio y la garantía) en su principal ventaja competitiva, para ganar consideración y ventas frente al dominio de BYD en 3 meses.</span>
+  </div>
+
+  <div style="margin-top:16px;">
+    <span class="kick">Formato del trabajo · interactivo / web</span>
+    <div class="linkbox">
+      <img class="qr" src="design/piezas/qr_presentacion.png" alt="QR a la presentación">
+      <div class="l">
+        <b>Este documento es el informe explicativo. La propuesta completa es interactiva:</b>
+        <div style="margin-top:5px;font-size:13px;">Abrí la <a href="https://ariel-360.github.io/tp-chevrolet-ev-care/TP_Integrador_MarketingMTyO_Grupo31_Chevrolet.html">presentación interactiva</a> o escaneá el QR con tu celular.</div>
+        <div class="small">ariel-360.github.io/tp-chevrolet-ev-care</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PÁGINA 2 · RESUMEN EJECUTIVO ===================== -->
+<section class="page">
+  <div class="topbar">
+    <img src="design/piezas/utn_logo.png" alt="UTN">
+    <div class="meta">Grupo 31 · Chevrolet Spark EUV<br>Informe explicativo · pág. 2</div>
+  </div>
+
+  <h2 class="sec"><span class="gold-num">▸</span> Resumen ejecutivo</h2>
+  <p class="lead">Síntesis de la propuesta. El desarrollo completo, con evidencia y piezas, está en la presentación interactiva (link y QR en la portada).</p>
+
+  <div class="idea">
+    <h3>La gran idea — "Chevrolet EV Care"</h3>
+    <p>En Argentina, la mayor barrera para comprar un eléctrico no es el precio ni la autonomía: es la <b>desconfianza en la posventa</b> (no hay red de talleres desarrollada y es condición de la garantía). Chevrolet es la única marca tradicional del lote con red instalada. Convertimos esa debilidad del mercado en nuestra ventaja: <b>no vendemos un auto, vendemos tranquilidad de largo plazo.</b></p>
+  </div>
+
+  <span class="kick">Diagnóstico clave</span>
+  <div class="kpis">
+    <div class="kpi"><div class="big">+760%</div><div class="lab">crece el mercado EV (ene–may 2026)</div></div>
+    <div class="kpi"><div class="big">745,8 K</div><div class="lab">visitas/mes de chevrolet.com.ar (líder local)</div></div>
+    <div class="kpi"><div class="big">225 K</div><div class="lab">comunidad IG de Chevrolet (12× BYD)</div></div>
+    <div class="kpi"><div class="big">#1</div><div class="lab">barrera del comprador EV: la posventa</div></div>
+  </div>
+
+  <span class="kick">Los 5 pasos de la propuesta</span>
+  <div class="steps">
+    <div class="step"><span class="n">1</span><div><b>Análisis situacional:</b> auditoría digital de Chevrolet y su competencia, mercado y tendencias, benchmarking de 5 marcas, FODA y objetivos.</div></div>
+    <div class="step"><span class="n">2</span><div><b>Estrategia táctica:</b> audiencias (buyer personas), mix de canales (Search, Social, Influencers, CRM) y embudo con un 4° nivel de fidelización (Loyalty Loop).</div></div>
+    <div class="step"><span class="n">3</span><div><b>Plan operativo:</b> calendario / Gantt a 12 semanas y presupuesto.</div></div>
+    <div class="step"><span class="n">4</span><div><b>Plan de contenidos:</b> piezas para Social, Influencers y Search (Reel "Mito vs Realidad", carrusel de posventa, search ads).</div></div>
+    <div class="step"><span class="n">5</span><div><b>Presupuesto y KPI:</b> distribución de la inversión y métricas de éxito alineadas a cada objetivo.</div></div>
+  </div>
+
+  <div class="row2">
+    <div class="panel">
+      <h4>Objetivos a 90 días</h4>
+      <ul>
+        <li><b>Notoriedad:</b> +40% alcance · +30% seguidores en EV.</li>
+        <li><b>Consideración:</b> 900 leads · 300 test drives.</li>
+        <li><b>Conversión:</b> ≥ 60 ventas atribuidas a digital.</li>
+        <li><b>Fidelización:</b> 70% activa la posventa "EV Care".</li>
+        <li><b>Reputación:</b> NPS ≥ 60 · 4,5★ en service.</li>
+      </ul>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div class="totbox"><div class="big">ARS 36 M</div><div class="lab">Presupuesto total (3 meses)</div></div>
+      <div class="panel" style="font-size:11.5px;">
+        <h4>Diferencial vs. la competencia</h4>
+        Los rivales chinos terminan su embudo en la venta. Nosotros agregamos la <b>posventa inteligente</b> (agenda de service + "rating de uso" + IA) como motor de recompra y referidos.
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>TP Integrador 2026 · "Consultoría de Marketing Digital" · Grupo 31 · Chevrolet Spark EUV</span>
+    <span>Presentación: <a href="https://ariel-360.github.io/tp-chevrolet-ev-care/TP_Integrador_MarketingMTyO_Grupo31_Chevrolet.html">ver online</a></span>
+  </div>
+</section>
+
+</body>
+</html>
